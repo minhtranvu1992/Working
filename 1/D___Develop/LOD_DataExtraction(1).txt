@@ -1,0 +1,149 @@
+-- Order Registration 
+select 
+	-- Basic data
+	o.GroupNo +'-'+ o.LegalNo as "Order number"
+	, le.EntityCode as "Legal entity"
+	, bu.BUDesc as "Business unit"
+	, i.IndustryCode as "Industry"
+	, pc.ProcCenterCode as "Procurement center"
+	, case when o.PCPurchase = 0 then 'No' else 'Yes' end as "BU Purchase from PC"
+	, o.PCPurchasePrice as "Purchase Price from PC"
+	, o.PCPurchaseCurrency as "Purchase Currency from PC"
+	, o.PCPurchasePrice_EUR as "Purchase Price from PC (EUR)"
+	, o.Division, o.SubDivision as "Subdivision"
+	, o.SalesArea as "Sales territory"
+	, o.GoodDescription as "Description of goods"
+	, o.OrderIntakeDate as "Order Registration Date"
+	, o.LocalRef as "Local reference"
+	, pl.ProductLineCode as "Product line"
+	, o.Product
+	, m.MerchandiseDesc as "Merchandise"
+	, c.CustomerName as Customer
+	, b.CustomerName as Buyer
+	, o.BusinessType as "Business type"
+	, s.SupplierName as "Supplier"
+	, se.SupplierName as Seller
+	, sp1.SalesPersonDesc + ' ('+sp1.SalesPersonCode+')' as "Sales person 1"
+	, sp2.SalesPersonDesc + ' ('+sp2.SalesPersonCode+')' as "Sales person 2"
+	, sp3.SalesPersonDesc + ' ('+sp3.SalesPersonCode+')' as "Sales person 3"
+	--Order intake data
+	, case when o.Confirmed = 0 then 'No' else 'Yes' end as Confirmed
+	, o.OrderIntakeDate as "Order intake date"
+	, o.Currency, o.ExchangeRate
+	, o.OrderVal as "Order value"
+	, o.OrderVal_EUR as "Order value (EUR)"
+	, o.DB2Val as "DB2 - old name is DB3"
+	, o.DB2Val_EUR as "DB2 (EUR) - old name is DB3 (EUR)"
+	, o.EstDeliveryDate as "Estimated delivery date"
+	, sbu.BUDesc as "Second BU involved"
+	, o.Share as "Share of second BU(%)"
+	, o.Remarks
+	, o.UpdatedDate
+	, o.RegistrationDate
+from OrderReg o 
+	left join LegalEntity le on o.LegalEntity=le.EntityID
+	left join BusinessUnit bu on o.BusinessUnit=bu.BUID
+	left join Industry i on o.Industry=i.IndustryID
+	left join ProcurementCenter pc on o.ProcCenter=pc.ProcCenterID
+	left join ProductLine pl on o.ProductLine=pl.ProductLineID
+	left join Merchandise m on o.Merchandise=m.MerchandiseID
+	left join Customer c on o.Customer=c.CustomerID
+	left join Customer b on o.Buyer=b.CustomerID
+	left join Supplier s on o.Supplier=s.SupplierID
+	left join Supplier se on o.Seller=se.SupplierID
+	left join SalesPerson sp1 on o.PrimarySales=sp1.SalesPersonID
+	left join SalesPerson sp2 on o.SecSales=sp2.SalesPersonID
+	left join SalesPerson sp3 on o.ThirdSalesPerson=sp3.SalesPersonID
+	left join BusinessUnit sbu on o.SecondBU=sbu.BUID
+where o.Merchandise = 7 and YEAR(o.OrderIntakeDate) in (2015, 2016)
+	--and o.GroupNo = 'A1620'
+	and isnull(o.UpdatedDate,'01-JAN-1900') > '13-APR-2016' or isnull(o.RegistrationDate,'01-JAN-1900') > '13-APR-2016'
+order by 1;
+
+
+-- Billing and Shipping
+select 
+	-- Turnover
+	o.GroupNo +'-'+ o.LegalNo as "Order number"
+	, obs.Currency
+	, obs.InvoiceAmt as "Invoice amount"
+	, obs.InvoiceAmt_EUR as "Invoice amount(EUR)"
+	, obs.BS_OrderVal as "Order value"
+	, obs.BS_OrderVal_EUR as "Order value (EUR)"
+	, obs.DB2Amt as "DB2 - old name is DB3"
+	, obs.DB2Amt_EUR as "DB2(EUR) - old name is DB3(EUR)"
+	, o.LocalRef as "Local reference"
+	, obs.InvoiceDate as "Invoice date"
+	, obs.InvoiceRef as "Invoice ref"
+	, obs.PaidDate as "Paid on"
+	, obs.PaidAmt as "Amount paid"
+	--Status
+	, obs.ShippedDate as "Shipped on"
+	, obs.FinalizedDate as "Order closed/finalized"
+	, obs.Remarks
+	, o.UpdatedDate
+	, o.RegistrationDate
+from OrderReg o 
+	left join OrderBillingShipping obs on o.OrderNo=obs.OrderNo
+where o.Merchandise = 7 and YEAR(o.OrderIntakeDate) in (2015, 2016)
+	--and o.GroupNo = 'A1620'
+	and isnull(o.UpdatedDate,'01-JAN-1900') > '13-APR-2016' or isnull(o.RegistrationDate,'01-JAN-1900') > '13-APR-2016'
+order by 1;
+
+-- Registration Service or Engineering Operations
+select 
+	-- Turnover
+	o.GroupNo +'-'+ o.LegalNo as "Order number"
+	, case when ors.JRMachine = 0 then 'No' else 'Yes' end as "JR Machine"
+	, ors.ServiceType as "Service type"
+	, case when ors.Chareable = 0 then 'No' else 'Yes' end as "Chargeable"
+	, o.LocalRef as "Local reference"
+	, ors.RefMachineOrder as "Ref. machine order"
+	, ors.ExecutionDateFrom as "Execution date from"
+	, ors.ExecutionDateTo as "Execution date to"
+	--Human resources
+	, ors.LabourCurrency as "Currency (of Total labour cost)"
+	, ors.LabourCost as "Pre-calculation/Total labour cost"
+	, ors.LabourRate as "Pre-calculation/Exchange rate (of Total labour cost)"
+	, ors.LabourCostEUR as "Pre-calculation/Total labour cost (EUR)"
+	, ors.LabourDB3 as "Pre-calculation/DB3 (EUR)"
+	
+	, ors.LabourCostPost as "Post-calculation/Total labour cost"
+	, ors.LabourRatePost as "Post-calculation/Exchange rate (of Total labour cost)"
+	, ors.LabourCostEURPost as "Post-calculation/Total labour cost (EUR)"
+	, ors.LabourDB3Post as "Post-calculation/DB3 (EUR)"
+	
+	, ors.ManHoursPre as "Pre-calculation/man hour(s)"
+	, ors.ManDaysPre as "Pre-calculation/man day(s)"
+	, ors.DB3Pre as "Pre-calculation/Revenue"
+	, ors.Currency
+	, ors.DB3EURPre as "Pre-calculation/Revenue (EUR)"
+	
+	, ors.ManHoursPost as "Post-calculation/man hour(s)"
+	, ors.ManDaysPost as "Post-calculation/man day(s)"
+	, ors.DB3Post as "Post-calculation/Revenue"
+	, ors.DB3EURPost as "Post-calculation/Revenue (EUR)"
+	
+	, o.UpdatedDate
+	, o.RegistrationDate
+from OrderReg o 
+	left join OrderRegService ors on o.OrderNo=ors.OrderNo
+where o.Merchandise = 7 and YEAR(o.OrderIntakeDate) in (2015, 2016)
+	--and o.GroupNo = 'A1620'
+	and isnull(o.UpdatedDate,'01-JAN-1900') > '13-APR-2016' or isnull(o.RegistrationDate,'01-JAN-1900') > '13-APR-2016'
+order by 1;
+
+-- Registration Service or Engineering Operations
+select 
+	o.GroupNo +'-'+ o.LegalNo as "Order number"
+	--Warranty
+	, orsw.WarrantyYear as "Warranty/Year"
+	, orsw.TotalHours as "Warranty/Total hour(s)"
+	, orsw.TotalDays as "Warranty/Total day(s)"
+from OrderReg o 
+	left join OrderRegService ors on o.OrderNo=ors.OrderNo
+	left join OrderRegServiceWarranty orsw on ors.OrderRegServiceID=orsw.OrderRegServiceID
+where o.Merchandise = 7 and YEAR(o.OrderIntakeDate) in (2015, 2016)
+	--and o.GroupNo = 'A1620'
+	and isnull(o.UpdatedDate,'01-JAN-1900') > '13-APR-2016' or isnull(o.RegistrationDate,'01-JAN-1900') > '13-APR-2016'
+order by 1, 2;
