@@ -5,21 +5,6 @@ SELECT CASE
            THEN dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.DB2 / 2
            ELSE dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.DB2
        END AS DB2,
-       CASE
-           WHEN dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.nr_konto1 = '3730'
-                AND dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.[Calculation_Status] = 1
-           THEN dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.PostCal_Value_DB2 / 2
-           ELSE dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.PostCal_Value_DB2
-       END AS PostCal_Value_DB2,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.PostCal_Value_DB3,
-       CASE
-           WHEN dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.nr_konto1 = '3730'
-                AND dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.[Calculation_Status] = 0
-           THEN dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.PreCal_Value_DB2 / 2
-           ELSE dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.PreCal_Value_DB2
-       END AS PreCal_Value_DB2,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.PreCal_Value_DB3,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_DB2pos.[Calculation_Status],
        dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_auftrag,
        dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_position,
        dbo.vTMP_VENTAS_OrderComplete_Trade_Value.preis_ges_wr,
@@ -72,12 +57,7 @@ SELECT dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_auftrag,
        dbo.FAKT_OrderIntake.ordertype,
        dbo.FAKT_OrderIntake.source,
        dbo.FAKT_OrderIntake.department,
-       dbo.FAKT_OrderIntake.descriptionofgoods,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PreCal_Value_Currency AS PreCal_Value_Currency,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PreCal_Value AS PreCal_Value,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PostCal_Value_Currency AS PostCal_Value_Currency,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PostCal_Value AS PostCal_Value,
-       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.[Calculation_Status] AS [Calculation_Status]
+       dbo.FAKT_OrderIntake.descriptionofgoods
 FROM dbo.vTMP_VENTAS_OrderComplete_Trade_Value
      INNER JOIN dbo.FAKT_OrderIntake ON dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_auftrag = dbo.FAKT_OrderIntake.orderno
                                         AND dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_position = dbo.FAKT_OrderIntake.orderpos
@@ -92,21 +72,6 @@ SELECT CASE
            THEN dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.DB2 / 2
            ELSE dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.DB2
        END AS DB2,
-       CASE
-           WHEN dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.nr_konto = '3730'
-                AND dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.[Calculation_Status] = 0
-           THEN dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.PreCal_Value_DB2 / 2
-           ELSE dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.PreCal_Value_DB2
-       END AS PreCal_Value_DB2,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.PreCal_Value_DB3,
-       CASE
-           WHEN dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.nr_konto = '3730'
-                AND dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.[Calculation_Status] = 1
-           THEN dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.PostCal_Value_DB2 / 2
-           ELSE dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.PostCal_Value_DB2
-       END AS PostCal_Value_DB2,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.PostCal_Value_DB3,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.[Calculation_Status],
        dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.belegdatum,
        dbo.vTMP_VENTAS_OrderComplete_Comm_DB2pos.nr_konto,
        dbo.FAKT_OrderIntake.bu_id,
@@ -151,11 +116,6 @@ SELECT dbo.vTMP_VENTAS_OrderComplete_Comm_Value.nr_position,
        dbo.FAKT_OrderIntake.descriptionofgoods,
        dbo.vTMP_VENTAS_OrderComplete_Comm_Value.preis_ges_wr,
        dbo.vTMP_VENTAS_OrderComplete_Comm_Value.preis_ges_dm,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_Value.PreCal_Value_Currency AS PreCal_Value_Currency,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_Value.PreCal_Value AS PreCal_Value,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_Value.PostCal_Value_Currency AS PostCal_Value_Currency,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_Value.PostCal_Value AS PostCal_Value,
-       dbo.vTMP_VENTAS_OrderComplete_Comm_Value.[Calculation_Status],
        dbo.vTMP_VENTAS_OrderComplete_Comm_Value.nr_waehrung,
        dbo.vTMP_VENTAS_OrderComplete_Comm_Value.belegdatum AS deliverydate
 FROM dbo.vTMP_VENTAS_OrderComplete_Comm_Value
@@ -167,8 +127,6 @@ WHERE(dbo.FAKT_OrderIntake.source = N'HBG')
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 /*Local Orders_OrderComplete_Value*/
-
-
 
 
 SELECT ID,
@@ -189,11 +147,6 @@ SELECT ID,
        EK_Preis,
        VK_Wrg,
        Wert_Wrg,
-       Wert_Wrg AS PreCal_Value,
-       '0' AS PreCal_Value_Currency,
-       '0' AS PostCal_Value,
-       '0' AS PostCal_Value_Currency,
-       '0' AS [Calculation_Status],
        MakerComm,
        Customs,
        SubAgent,
@@ -219,7 +172,6 @@ WHERE(Shipment_Date IS NOT NULL)
 
 /*Local Orders_OrderComplete_DB2*/
 
-
 SELECT ID,
        ProcCenterOrderNo,
        Order_Date,
@@ -235,11 +187,6 @@ SELECT ID,
        LieferantNr,
        Warenbez,
        DB2,
-       DB2 AS PreCal_Value_DB2,
-       '0' AS PreCal_Value_DB3,
-       '0' AS PostCal_Value_DB2,
-       '0' AS PostCal_Value_DB3,
-       '0' AS [Calculation_Status],
        EK_Preis,
        VK_Wrg,
        Wert_Wrg,
@@ -264,12 +211,9 @@ FROM dbo.vTMP_HKGOrders_DB2
 WHERE(Shipment_Date IS NOT NULL)
      AND ProcCenterOrderNo LIKE 'x%';
 
-
-
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*Non HKG orders and FOXPRO orders before 2013 - Fact Order Complete*/
-
 
 SELECT o.Industry,
        o.Merchandise,
@@ -289,23 +233,6 @@ SELECT o.Industry,
            THEN o.OrderVal
            ELSE bs.OrderVal
        END AS ordercomplete_value_currency,
-       o.OrderVal_EUR AS PreCal_Value,
-       o.OrderVal AS PreCal_Value_Currency,
-       CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.OrderVal_EUR, 0)
-           ELSE 0
-       END AS PostCal_Value,
-       CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.OrderVal, 0)
-           ELSE 0
-       END AS PostCal_Value_Currency,
-       CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN 1
-           ELSE 0
-       END AS [Calculation_Status],
        c.CustomerID,
        s.SupplierID,
        o.GroupNo AS OrderNo,
@@ -333,12 +260,6 @@ FROM LZ_LOD_OrderBillingShipping bs
 WHERE bs.ShippedDate IS NOT NULL;
 
 
-
-
-
-
-
-
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*Non HKG orders and FOXPRO orders before 2013 - Fact Order Complete DB2*/
@@ -362,23 +283,6 @@ SELECT o.Industry,
            THEN vtl.LabourDB3
            ELSE vtl.LabourDB3Post
        END AS ordercomplete_db3,
-       o.DB2Val_EUR AS PreCal_Value_DB2,
-       vtl.LabourDB3 AS PreCal_Value_DB3,
-       CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.DB2Amt_EUR, 0)
-           ELSE 0
-       END AS PostCal_Value_DB2,
-       CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(vtl.LabourDB3Post, 0)
-           ELSE 0
-       END AS PostCal_Value_DB3,
-       CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN 1
-           ELSE 0
-       END AS [Calculation_Status],
        c.CustomerID,
        s.SupplierID,
        o.GroupNo AS OrderNo,
@@ -423,23 +327,6 @@ SELECT o.Industry,
            ELSE o.OrderVal_EUR
        END AS ordercomplete_value,
        o.OrderVal AS ordercomplete_value_currency,
-       o.OrderVal_EUR AS PreCal_Value,
-       o.OrderVal AS PreCal_Value_Currency,
-       CASE
-           WHEN(ss.active = 0)
-           THEN ISNULL(sc.OrderCompleteValue, 0)
-           ELSE 0
-       END AS PostCal_Value,
-       CASE
-           WHEN(ss.active = 0)
-           THEN ISNULL(o.OrderVal, 0)
-           ELSE 0
-       END AS PostCal_Value_Currency,
-       CASE
-           WHEN(ss.active = 0)
-           THEN 1
-           ELSE 0
-       END AS [Calculation_Status],
        c.CustomerID,
        s.SupplierID,
        o.GroupNo AS OrderNo,
@@ -470,14 +357,11 @@ FROM LZ_LOD_OrderBillingShipping bs
      JOIN vTMP_LOD_OrderIntake vtl ON vtl.OrderNo_New = o.GroupNo
 WHERE o.OrderIntakeDate >= '2008-01-01';
 
-
-
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*HKG orders and FOXPRO orders since 2013 - Fact Order Complete DB2*/
 
 --- source query
-
 SELECT o.Industry,
        o.Merchandise,
        o.OrderIntakeDate AS OrderDate,
@@ -485,11 +369,6 @@ SELECT o.Industry,
        sb.OrderCompleteDateSolomon AS InvoiceDate,
        CAST(sb.BusinessType AS NVARCHAR(10)) AS OrderType,
        o.GoodDescription AS descriptionofgoods,
-       o.DB2Val_EUR AS PreCal_Value_DB2,
-       ISNULL(vtl.LabourDB3, 0) AS PreCal_Value_DB3,
-       ISNULL(sc.OrderCompleteDB2, 0) AS PostCal_Value_DB2,
-       '0' AS PostCal_Value_DB3,
-       '1' AS [Calculation_Status],
        c.CustomerID,
        s.SupplierID,
        o.GroupNo AS OrderNo,
@@ -531,11 +410,6 @@ SELECT o.Industry,
        sb.OrderCompleteDateSolomon AS InvoiceDate,
        CAST(sb.BusinessType AS NVARCHAR(10)) AS OrderType,
        o.GoodDescription AS descriptionofgoods,
-       o.DB2Val_EUR AS PreCal_Value_DB2,
-       ISNULL(vtl.LabourDB3, 0) AS PreCal_Value_DB3,
-       '0' AS PostCal_Value_DB2,
-       '0' AS PostCal_Value_DB3,
-       '0' AS [Calculation_Status],
        c.CustomerID,
        s.SupplierID,
        o.GroupNo AS OrderNo,
