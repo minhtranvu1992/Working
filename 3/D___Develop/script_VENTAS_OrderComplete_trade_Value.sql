@@ -1,0 +1,30 @@
+SELECT dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_auftrag,
+       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_position,
+	  dbo.vTMP_VENTAS_OrderComplete_Trade_Value.preis_ges_wr,
+       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.preis_ges_dm,
+       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.belegdatum,
+       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.liefertermin,
+       dbo.FAKT_OrderIntake.bu_id,
+       dbo.FAKT_OrderIntake.industry,
+       dbo.FAKT_OrderIntake.merchandise,
+       dbo.FAKT_OrderIntake.orderdate,
+       dbo.FAKT_OrderIntake.estdeliverydate,
+       dbo.FAKT_OrderIntake.deliverydate,
+       dbo.FAKT_OrderIntake.customer,
+       dbo.FAKT_OrderIntake.supplier,
+       dbo.FAKT_OrderIntake.currency,
+       dbo.FAKT_OrderIntake.country,
+       dbo.FAKT_OrderIntake.ordertype,
+       dbo.FAKT_OrderIntake.source,
+       dbo.FAKT_OrderIntake.department,
+       dbo.FAKT_OrderIntake.descriptionofgoods,
+	  dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PreCal_Value_Currency as PreCal_Value_Currency,
+       dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PreCal_Value as PreCal_Value,
+	  dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PostCal_Value_Currency as PostCal_Value_Currency,
+	  dbo.vTMP_VENTAS_OrderComplete_Trade_Value.PostCal_Value as PostCal_Value,
+	  dbo.vTMP_VENTAS_OrderComplete_Trade_Value.[Calculation_Status] as [Calculation_Status],
+FROM dbo.vTMP_VENTAS_OrderComplete_Trade_Value
+     INNER JOIN dbo.FAKT_OrderIntake ON dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_auftrag = dbo.FAKT_OrderIntake.orderno
+                                        AND dbo.vTMP_VENTAS_OrderComplete_Trade_Value.nr_position = dbo.FAKT_OrderIntake.orderpos
+WHERE(fakt_orderintake.source = 'HBG')
+     AND (fakt_orderintake.ordertype = 'T');

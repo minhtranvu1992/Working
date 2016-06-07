@@ -5,6 +5,8 @@ iF OBJECT_ID('tempdb..#temp1') is not null drop table #temp1
 iF OBJECT_ID('tempdb..#temp2') is not null drop table #temp2
 
 
+
+--- source query
 SELECT o.Industry,
        o.Merchandise,
        o.OrderIntakeDate AS OrderDate,
@@ -13,20 +15,20 @@ SELECT o.Industry,
        LEFT(o.BusinessType, 1) AS OrderType,
        o.GoodDescription AS descriptionofgoods,
        bs.Currency AS currency,
-	  o.OrderVal_EUR AS PreCal_Value,
-	  o.OrderVal AS PreCal_Value_Currency,
+       o.DB2Val_EUR AS PreCal_Value_DB2,
+       vtl.LabourDB3 AS PreCal_Value_DB3,
        CASE
            WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.OrderVal_EUR,0)
+           THEN ISNULL(bs.DB2Amt_EUR, 0)
            ELSE 0
-       END AS PostCal_Value,
-	  CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.OrderVal,0)
-           ELSE 0
-       END AS PostCal_Value_Currency,
+       END AS PostCal_Value_DB2,
        CASE
-           WHEN bs.FinalizedDate IS NOT NULL 
+           WHEN bs.FinalizedDate IS NOT NULL
+           THEN ISNULL(vtl.LabourDB3Post, 0)
+           ELSE 0
+       END AS PostCal_Value_DB3,
+       CASE
+           WHEN bs.FinalizedDate IS NOT NULL
            THEN 1
            ELSE 0
        END AS [Calculation_Status],
@@ -39,7 +41,7 @@ SELECT o.Industry,
        o.HistoricalSource AS HistoricalSource,
        o.GroupNo,
        CAST(pc.code AS NVARCHAR(3)) AS ProcurementCenter
-into #temp1
+INTO #temp1
 FROM LZ_LOD_OrderBillingShipping bs
      JOIN LZ_LOD_OrderReg o ON o.OrderNo = bs.OrderNo
      LEFT JOIN LZ_LOD_Customer c ON o.Customer = c.CustomerName
@@ -56,10 +58,5 @@ FROM LZ_LOD_OrderBillingShipping bs
      LEFT JOIN ADM_ProcurementCenter pc ON o.ProcCenter = pc.description
      JOIN vTMP_LOD_OrderIntake vtl ON vtl.OrderNo_New = o.GroupNo
 WHERE bs.ShippedDate IS NOT NULL;
-
-
-
-
-
-
-select * from #temp1
+SELECT *
+FROM #temp1;

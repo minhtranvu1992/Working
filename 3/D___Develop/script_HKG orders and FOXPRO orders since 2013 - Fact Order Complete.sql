@@ -1,32 +1,32 @@
-use [Staging]
-
+USE Staging;
 iF OBJECT_ID('tempdb..#temp1') is not null drop table #temp1
 
 iF OBJECT_ID('tempdb..#temp2') is not null drop table #temp2
 
 
+
+--- source query
 SELECT o.Industry,
        o.Merchandise,
        o.OrderIntakeDate AS OrderDate,
-       bs.ShippedDate AS InvoiceDate,
-       bs.ShippedDate AS DeliveryDate,
-       LEFT(o.BusinessType, 1) AS OrderType,
+       o.EstDeliveryDate,
+       sb.OrderCompleteDateSolomon AS InvoiceDate,
+       CAST(sb.BusinessType AS NVARCHAR(10)) AS OrderType,
        o.GoodDescription AS descriptionofgoods,
-       bs.Currency AS currency,
-	  o.OrderVal_EUR AS PreCal_Value,
-	  o.OrderVal AS PreCal_Value_Currency,
+       o.OrderVal_EUR AS PreCal_Value,
+       o.OrderVal AS PreCal_Value_Currency,
        CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.OrderVal_EUR,0)
+           WHEN(ss.active = 0)
+           THEN ISNULL(sc.OrderCompleteValue, 0)
            ELSE 0
        END AS PostCal_Value,
-	  CASE
-           WHEN bs.FinalizedDate IS NOT NULL
-           THEN ISNULL(bs.OrderVal,0)
+       CASE
+           WHEN(ss.active = 0)
+           THEN ISNULL(o.OrderVal, 0)
            ELSE 0
        END AS PostCal_Value_Currency,
        CASE
-           WHEN bs.FinalizedDate IS NOT NULL 
+           WHEN(ss.active = 0)
            THEN 1
            ELSE 0
        END AS [Calculation_Status],
@@ -38,6 +38,7 @@ SELECT o.Industry,
        '1' AS OrderPos,
        o.HistoricalSource AS HistoricalSource,
        o.GroupNo,
+       bs.ShippedDate,
        CAST(pc.code AS NVARCHAR(3)) AS ProcurementCenter
 into #temp1
 FROM LZ_LOD_OrderBillingShipping bs
@@ -47,19 +48,18 @@ FROM LZ_LOD_OrderBillingShipping bs
      JOIN tmp_bu tb ON o.BusinessUnit = tb.bu_desc
      JOIN
 (
-    SELECT OrderNo
-    FROM dbo.vLOD_NonHKGOrderNo
-    UNION ALL
-    SELECT OrderNo
-    FROM dbo.[vLOD_FOXPROOrderNo_Before2013]
+    SELECT orderno
+    FROM vLOD_HKGOrderNo
+    UNION
+    SELECT orderno
+    FROM dbo.vLOD_FOXPROOrderNo_Since2013
 ) vl ON o.GroupNo = vl.OrderNo
+     JOIN dbo.vTMP_Solomon_03_OrderComplete_Date_BusinessType_new sb ON o.GroupNo = sb.ord_no
+     JOIN dbo.vTMP_Solomon_02_OrderComplete_value_new sc ON o.GroupNo = sc.ord_no
+     LEFT JOIN dbo.TMP_Solomon_SubAcct ss ON o.GroupNo = ss.orderno
      LEFT JOIN ADM_ProcurementCenter pc ON o.ProcCenter = pc.description
      JOIN vTMP_LOD_OrderIntake vtl ON vtl.OrderNo_New = o.GroupNo
-WHERE bs.ShippedDate IS NOT NULL;
-
-
-
-
+WHERE o.OrderIntakeDate >= '2008-01-01';
 
 
 select * from #temp1
