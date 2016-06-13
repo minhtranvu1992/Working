@@ -114,18 +114,18 @@ SELECT a.nr_auftrag,
        a.office_reference,
        CASE
            WHEN ISNULL(a.Precal_IntakeValue, 0) = 0
-           THEN a.preis_ges_dm
+           THEN ISNULL(a.preis_ges_dm,0)
            ELSE ISNULL(a.Precal_IntakeValue, 0)
        END AS Precal_IntakeValue,
        CASE
            WHEN ISNULL(a.Precal_IntakeDB2, 0) = 0
-           THEN a.DB2
+           THEN ISNULL(a.DB2,0)
            ELSE ISNULL(a.Precal_IntakeDB2, 0)
        END AS Precal_IntakeDB2,
        ISNULL(a.Precal_IntakeDB2_Currency, 0) AS Precal_IntakeDB2_Currency,
        CASE
            WHEN ISNULL(a.Precal_IntakeValue_Currency, 0) = 0
-           THEN a.preis_ges_wr
+           THEN ISNULL(a.preis_ges_wr,0)
            ELSE ISNULL(a.Precal_IntakeValue_Currency, 0)
        END AS Precal_IntakeValue_Currency,
        ISNULL(a.Postcal_IntakeValue, 0) AS Postcal_IntakeValue,
@@ -360,18 +360,18 @@ WITH     temp(nr_position,
             a.office_reference,
             CASE
                 WHEN ISNULL(a.Precal_IntakeValue, 0) = 0
-                THEN a.preis_ges_dm
+                THEN ISNULL(a.preis_ges_dm,0)
                 ELSE ISNULL(a.Precal_IntakeValue, 0)
             END AS Precal_IntakeValue,
             CASE
                 WHEN ISNULL(a.Precal_IntakeDB2, 0) = 0
-                THEN a.DB2
+                THEN ISNULL(a.DB2,0)
                 ELSE ISNULL(a.Precal_IntakeDB2, 0)
             END AS Precal_IntakeDB2,
             ISNULL(a.Precal_IntakeDB2_Currency, 0) AS Precal_IntakeDB2_Currency,
             CASE
                 WHEN ISNULL(a.Precal_IntakeValue_Currency, 0) = 0
-                THEN a.preis_ges_wr
+                THEN ISNULL(a.preis_ges_wr,0)
                 ELSE ISNULL(a.Precal_IntakeValue_Currency, 0)
             END AS Precal_IntakeValue_Currency,
             ISNULL(a.Postcal_IntakeValue, 0) AS Postcal_IntakeValue,
@@ -426,10 +426,10 @@ SELECT ord_date,
        shipped,
        'J' AS backlogrelevant,
        ord_no AS office_reference,
-       OrderValue AS Precal_IntakeValue,
-       DB2 AS Precal_IntakeDB2,
-       DB2_in_local_currency AS Precal_IntakeDB2_Currency,
-       OrderValue_in_local_currency AS Precal_IntakeValue_Currency,
+       ISNULL(OrderValue,0) AS Precal_IntakeValue,
+       ISNULL(DB2,0) AS Precal_IntakeDB2,
+       ISNULL(DB2_in_local_currency,0) AS Precal_IntakeDB2_Currency,
+       iSNULL(OrderValue_in_local_currency,0) AS Precal_IntakeValue_Currency,
        '0' AS Postcal_IntakeValue,
        '0' AS Postcal_IntakeValue_Currency,
        '0' AS Postcal_IntakeDB2,
@@ -481,8 +481,8 @@ SELECT ID,
        orderpos,
        vorgang AS office_reference,
        Backlogrelevant,
-       Wert_Wrg AS Precal_IntakeValue,
-       DB2 AS Precal_IntakeDB2,
+       ISNULL(Wert_Wrg,0) AS Precal_IntakeValue,
+       ISNULL(DB2,0) AS Precal_IntakeDB2,
        '0' AS Precal_IntakeDB2_Currency,
        '0' AS Precal_IntakeValue_Currency,
        '0' AS Postcal_IntakeValue,
