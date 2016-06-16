@@ -72,7 +72,7 @@
       <FullPath>PrepareRandom.dtsx</FullPath>
       <References />
     </DtsPackage>
-    <DtsPackage FormatVersion="-1">
+    <DtsPackage FormatVersion="3">
       <Name>StagingFoxpro_Old.dtsx</Name>
       <FullPath>StagingFoxpro_Old.dtsx</FullPath>
       <References />
