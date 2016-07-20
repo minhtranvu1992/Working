@@ -36,6 +36,9 @@
               <Width>1.96875in</Width>
             </TablixColumn>
             <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
               <Width>1.47917in</Width>
             </TablixColumn>
             <TablixColumn>
@@ -348,6 +351,36 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox37</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Shipped Date</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -878,6 +911,36 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="ShippedDate">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ShippedDate.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ShippedDate</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="ProcCenterCode1">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -1109,6 +1172,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -1123,7 +1187,7 @@
         </TablixRowHierarchy>
         <DataSetName>OrderIntake</DataSetName>
         <Height>0.5in</Height>
-        <Width>19.73958in</Width>
+        <Width>20.73959in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1169,6 +1233,7 @@ SELECT o.[OrderNo]
        ,o.Division
       ,o.[RegistrationDate]
       ,o.[OrderIntakeDate]
+    
       ,o.[GroupNo] as OrderNo_new
       ,o.[LegalNo]
       ,o.CreatedBy
@@ -1183,6 +1248,7 @@ SELECT o.[OrderNo]
       ,o.ProcCenter
       ,p.ProcCenterCode
       ,o.HistoricalSource
+
   FROM [LOD].[dbo].[OrderReg] as o (nolock)
   LEFT join LOD.dbo.OrderRegService as  s (nolock) on o.OrderNo=s.OrderNo
   Left join LOD.dbo.OrderBillingShipping as bs (nolock) on bs.OrderNo=o.OrderNo
