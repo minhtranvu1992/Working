@@ -1,0 +1,2952 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/13/2008 2:40:15 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="AU-L234"
+  DTS:CreatorName="BRIGHTSTAR\slawson"
+  DTS:DTSID="{A839FD62-933B-424B-B0E7-F3AE2BB7A727}"
+  DTS:EnableConfig="True"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:ForceExecutionResult="0"
+  DTS:LastModifiedProductVersion="11.0.3402.0"
+  DTS:LocaleID="3081"
+  DTS:ObjectName="DeliveryExecutionDynamic"
+  DTS:PackageType="5"
+  DTS:ProtectionLevel="0"
+  DTS:SuppressConfigurationWarnings="True"
+  DTS:VersionBuild="582"
+  DTS:VersionGUID="{CE14E97D-E7FC-4722-B28B-E161E128EFE7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0135EBDF-F77E-46B8-9D85-3E8EF85DEC75}"
+      DTS:ObjectName="DW">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ConnStr_DW]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ETLReference]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+      DTS:ObjectName="ETLReference">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ConnStr_ETLReference]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ExtractDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{26FA2F2A-2B67-4C28-9FAF-C2A9107FFD9D}"
+      DTS:ObjectName="ExtractDB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ConnStr_Extract]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[msdb]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9B4EAB0B-FD7F-41F1-94E3-5ADE9A35B931}"
+      DTS:ObjectName="msdb">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ConnStr_msdb]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Configurations>
+    <DTS:Configuration
+      DTS:ConfigurationString="DeliveryJobID"
+      DTS:ConfigurationVariable="\Package.Variables[User::DeliveryJobID].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{211DBE83-A55A-4DB8-9AC5-ACA67F438E94}"
+      DTS:ObjectName="DeliveryJobID" />
+    <DTS:Configuration
+      DTS:ConfigurationString="ConnStr_ETLReference"
+      DTS:ConfigurationVariable="\Package.Variables[User::ConnStr_ETLReference].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{B02D4B1E-F979-4DEC-BA6E-DD71B61F45AB}"
+      DTS:ObjectName="ConnStr_ETLReference" />
+    <DTS:Configuration
+      DTS:ConfigurationString="DeliveryControlID"
+      DTS:ConfigurationVariable="\Package.Variables[User::DeliveryControlID].Properties[Value]"
+      DTS:CreationName=""
+      DTS:DTSID="{168E0FF0-CF13-4697-9766-19CC7B137FA9}"
+      DTS:ObjectName="DeliveryControlID" />
+  </DTS:Configurations>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="msdb"
+      DTS:CreationName="DTS.LogProviderSQLServer.3"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{DBACF13A-0479-4CCD-A215-630A5D331EA6}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23D88186-9C6B-452D-B1AC-28CBE520E8D4}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::ConnStr_DW]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnStr_Destination">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D86C0682-5DD2-4D4E-AD98-989FA0113910}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnStr_DW">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6CFB1BFE-557D-44D9-A0E5-0F480C24EF9C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnStr_ETLReference">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{98F47A9B-C1C6-4EBF-A7C3-FD2ACDD6241F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnStr_Extract">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8BA9C71-AA7E-48FA-B140-EA732D200C5A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnStr_msdb">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0F622282-0F10-45B4-A0CA-A43030EE3315}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::ConnStr_Extract]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ConnStr_Source">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=05W8F2APSQ03;Initial Catalog=DWReference;Provider=SQLNCLI11.1;Integrated Security=SSPI;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C6BEC7A-D644-47FC-8115-72B210266C09}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentExecutionOrder">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{606A2079-2935-4965-91AE-4603BF54F789}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveredRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7A1EBB07-E17A-44C9-92B1-13B431BA15D4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryControlID">
+      <DTS:VariableValue
+        DTS:DataType="3">38</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8A7C4FD0-8A2D-4982-A296-D3E0BA049B51}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryEndTime">
+      <DTS:VariableValue
+        DTS:DataType="8">2011-11-30 13:45:38.733</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B08A22DE-2E35-4B87-9C4E-6CCEA609B6FA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryJobID">
+      <DTS:VariableValue
+        DTS:DataType="3">-100</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8303D7B6-BD53-45C9-AE4E-A15B998E9F4C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryPackageName">
+      <DTS:VariableValue
+        DTS:DataType="8">dbo.uspDeliver_mdmDimBusinessEntity</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{746434A5-D6B1-4FAB-B21B-AD9A3EA3660A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryPackagePath">
+      <DTS:VariableValue
+        DTS:DataType="8">\test</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BC874578-0814-449D-9833-449E5AC7FC8D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryStartTime">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BD596832-53CF-41A6-9E9A-59119CC3A0AC}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DeliveryTable">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83B26C5C-D2D5-4264-95CB-8A5DCC802C5E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DerivedPathAndName">
+      <DTS:VariableValue
+        DTS:DataType="8">\UAT\test\DeliverDimProduct</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F74022D6-4E4A-44E6-B45A-92BA05D7F65F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Environment">
+      <DTS:VariableValue
+        DTS:DataType="8">UAT</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5EFCAF96-1015-463A-B508-8D90EB5EEED4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorMessage">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A48A554-F514-46DC-8CFB-EF4CB88B648C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6DBF02CD-AB3F-4DDC-845C-AC7D4D85FAB2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorSource">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9DB27F3-4F49-47B2-B3EC-ADB3C5A8AB6B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorTable">
+      <DTS:VariableValue
+        DTS:DataType="8">err_erp.Receipt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{203E780F-723C-43BD-A5CE-3511C4558BFA}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractCount">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3E5EDA0F-83CD-4DE3-A55A-A26B351775B7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractJobID">
+      <DTS:VariableValue
+        DTS:DataType="3">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C46AF83-8419-4E83-971A-97997584FB7C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractJobIDList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4738F0B3-E2A9-4F3F-A400-6CDE2262B28A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExtractTable">
+      <DTS:VariableValue
+        DTS:DataType="8">dbo.vwpkgDeliveryProduct</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{37E2BBF6-A1B9-47D5-B39E-FC416BCE8FA9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertOnly">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6A57F080-4E21-4A0B-9A00-6F9E74F55C7A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastExecutionTime">
+      <DTS:VariableValue
+        DTS:DataType="8">2011-12-20</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{16379D3C-9312-4741-8A98-8019A66F3C77}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastExtractJobID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7EA55479-9DF7-4F0C-AA6C-2A79703DF671}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ManagerGUID">
+      <DTS:VariableValue
+        DTS:DataType="8">A93B8573-7731-4F59-BDB8-068205BFC4AA</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{874D697C-1210-457F-B0BA-F20C5C6C8D22}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ProcessType">
+      <DTS:VariableValue
+        DTS:DataType="8">SSIS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{995CF8BE-3853-4BC8-B31F-4D30837DA0BB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ScheduleType">
+      <DTS:VariableValue
+        DTS:DataType="8">Daily</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7A70A066-1A35-47B8-8BCA-EAC15A55EF07}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartTime">
+      <DTS:VariableValue
+        DTS:DataType="8">1900-01-01</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">3,7,OnError,13,OnPostExecute,9,OnWarning</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{DBACF13A-0479-4CCD-A215-630A5D331EA6}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Log Package Execution No Extract Jobs"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b8bb0939-d7e5-4c9c-88b6-9d17dc576b4a}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Package Execution No Extract Jobs"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:PropertyExpression
+        DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+    @DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + "
+    ,@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + "
+    ,@ExtractJobID = " + (DT_WSTR, 10) @[User::ExtractJobID]  + "
+    ,@StartTime = '" + @[User::StartTime]  + "'
+    ,@ManagerGUID = '" + @[User::ManagerGUID] + "'
+    ,@SuccessFlag = 0
+    ,@CompletedFlag = 1
+    ,@MessageSource = 'Log Delivery Execution: " + SUBSTRING(@[User::ErrorSource],1, 999)  + "' 
+    ,@Message = '" + SUBSTRING(REPLACE(@[User::ErrorMessage], "'", ""),1, 999)  + "'
+    ,@RowsDelivered = " + (DT_WSTR, 10) @[User::DeliveredRowCount]  + "
+    ,@RowsErrored = " + (DT_WSTR, 10) @[User::ErrorRowCount]  + "
+    ,@LastExecutionTime = '" + @[User::LastExecutionTime]  + "'
+    ,@NextLastExecutionTime = '" + @[User::StartTime]  + "'
+    ,@DeliveryPackagePathAndName = '" + @[User::DerivedPathAndName] + "'"</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+          SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;    @DeliveryControlID = 38&#xA;    ,@DeliveryJobID = -100&#xA;    ,@ExtractJobID = -1&#xA;    ,@StartTime = '1900-01-01'&#xA;    ,@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA'&#xA;    ,@SuccessFlag = 0&#xA;    ,@CompletedFlag = 1&#xA;    ,@MessageSource = 'Log Delivery Execution: ' &#xA;    ,@Message = ''&#xA;    ,@RowsDelivered = 0&#xA;    ,@RowsErrored = 0&#xA;    ,@LastExecutionTime = '2011-12-20'&#xA;    ,@NextLastExecutionTime = '1900-01-01'&#xA;    ,@DeliveryPackagePathAndName = '\UAT\test\DeliverDimProduct'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{8F5140B4-DFF0-42D4-B941-A8C2416DC401}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Count Number of Extract JobIDs"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6F4B88DF-35F5-4F68-A6A5-6AEF331D7220}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Count Number of Extract JobIDs"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"SELECT COUNT(DISTINCT ExtractJobID) Cnt FROM " +  @[User::ExtractTable]  + " WHERE ExtractJobID &gt; " +  (DT_WSTR, 50)  @[User::LastExtractJobID]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{26FA2F2A-2B67-4C28-9FAF-C2A9107FFD9D}"
+              SQLTask:SqlStatementSource="SELECT COUNT(DISTINCT ExtractJobID) Cnt FROM dbo.vwpkgDeliveryProduct WHERE ExtractJobID &gt; 0"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="Cnt"
+                SQLTask:DtsVariableName="User::ExtractCount" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Derive Package Path if it exists"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31CE1AB8-47ED-4BC8-99B5-E9CC27DB6561}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Derive Package Path if it exists"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{FBC71E1C-79B0-426B-94AF-059BE96B6812}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="SSISFolder">
+              <DTS:VariableValue
+                DTS:DataType="8">ETL-RegionalReporting</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"EXEC spCheckSsisPath '" +  @[User::DerivedPathAndName] + "'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{9B4EAB0B-FD7F-41F1-94E3-5ADE9A35B931}"
+              SQLTask:SqlStatementSource="EXEC spCheckSsisPath '\UAT\test\DeliverDimProduct'"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::DerivedPathAndName" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{440C14A4-4404-48DD-A2A7-C4DDBD6693D0}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="For Each ExtractJobID Loop">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.SqlServer.Dts.Runtime.Enumerators.ADO.ForEachADOEnumerator, Microsoft.SqlServer.ForEachADOEnumerator, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+            DTS:DTSID="{F06A5530-3D8F-4DBE-B666-8EA84A1146C3}"
+            DTS:ObjectName="{F06A5530-3D8F-4DBE-B666-8EA84A1146C3}">
+            <DTS:ObjectData>
+              <FEEADO
+                EnumType="EnumerateRowsInFirstTable"
+                VarName="User::ExtractJobIDList" />
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{F2A9F29F-9BBA-43FF-8BA1-B0FE796806D3}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="ConnStr_DW">
+              <DTS:VariableValue
+                DTS:DataType="8">Data Source=05w8f2rcsq01;Initial Catalog=RegDistDW;Provider=SQLNCLI10;Persist Security Info=True;Auto Translate=False;User ID=RegDistSsisUser;Password=Br1ghtSt@r;</DTS:VariableValue>
+            </DTS:Variable>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{9759E891-9CDA-494C-BAA9-F47D8A2CD0A4}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="HasExtractJobID">
+              <DTS:VariableValue
+                DTS:DataType="8">Yes</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Do nothing"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{6209DE6D-F318-42B6-80FA-0CFAD11A88AF}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Do nothing"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+                  SQLTask:SqlStatementSource="SELECT 1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Execute Delivery Package"
+              DTS:CreationName="SSIS.ExecutePackageTask.3"
+              DTS:Description="Execute Package Task"
+              DTS:DTSID="{27D7EBCF-04B3-4067-B610-7A98CD076A0E}"
+              DTS:ExecutableType="SSIS.ExecutePackageTask.3"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Execute Delivery Package"
+              DTS:TaskContact="Executes DTS packages;Microsoft Corporation; Microsoft SQL Server v9; (C) 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="PackageName">@[User::DerivedPathAndName]</DTS:PropertyExpression>
+              <DTS:EventHandlers>
+                <DTS:EventHandler
+                  DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Execute Delivery Package.EventHandlers[OnError]"
+                  DTS:CreationName="OnError"
+                  DTS:DTSID="{432F599F-E84D-4A38-B2FF-4F56796C9F2D}"
+                  DTS:EventID="0"
+                  DTS:EventName="OnError"
+                  DTS:LocaleID="-1">
+                  <DTS:Variables>
+                    <DTS:Variable
+                      DTS:CreationName=""
+                      DTS:Description="The propagate property of the event"
+                      DTS:DTSID="{6CC748D6-5654-45EF-B14A-25D7058F1C32}"
+                      DTS:IncludeInDebugDump="6789"
+                      DTS:Namespace="System"
+                      DTS:ObjectName="Propagate">
+                      <DTS:VariableValue
+                        DTS:DataType="11">-1</DTS:VariableValue>
+                    </DTS:Variable>
+                  </DTS:Variables>
+                  <DTS:Executables />
+                </DTS:EventHandler>
+              </DTS:EventHandlers>
+              <DTS:ObjectData>
+                <ExecutePackageTask>
+                  <PackageName>\UAT\test\DeliverDimProduct</PackageName>
+                  <Connection>{9B4EAB0B-FD7F-41F1-94E3-5ADE9A35B931}</Connection>
+                </ExecutePackageTask>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Get DeliveredRowCount for this ExtractJobID in delivery table"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F0D48532-1A3C-43E1-B48A-FF1645CF9500}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Get DeliveredRowCount for this ExtractJobID in delivery table"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="2">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"
+IF (SELECT Coalesce(Col_length('" + @[User::DeliveryTable]  +  "','ExtractJobID'),0)) &gt; 0 
+    SELECT COUNT(*) AS DeliveredRowCount FROM " + @[User::DeliveryTable]  +  " (NOLOCK)  WHERE ExtractJobID = " +  (DT_WSTR, 10)@[User::ExtractJobID]
++ "
+ ELSE
+    SELECT 0 AS DeliveredRowCount
+"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{0135EBDF-F77E-46B8-9D85-3E8EF85DEC75}"
+                  SQLTask:SqlStatementSource="&#xA;IF (SELECT Coalesce(Col_length('','ExtractJobID'),0)) &gt; 0 &#xA;    SELECT COUNT(*) AS DeliveredRowCount FROM  (NOLOCK)  WHERE ExtractJobID = -1&#xA; ELSE&#xA;    SELECT 0 AS DeliveredRowCount&#xA;"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="0"
+                    SQLTask:DtsVariableName="User::DeliveredRowCount" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\GET ErrorRowCount for this ExtractJobID in the Error Table if the error table exists"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{1d0d08e7-ca0a-45cb-a5e9-d326563fdf42}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="GET ErrorRowCount for this ExtractJobID in the Error Table if the error table exists"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="2">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"SELECT 
+    COUNT(*)  AS ErrorRowCount
+FROM  
+    " + @[User::ErrorTable] + " (NOLOCK) 
+WHERE 
+    ExtractJobID = " +  (DT_WSTR, 10) @[User::ExtractJobID]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{26FA2F2A-2B67-4C28-9FAF-C2A9107FFD9D}"
+                  SQLTask:SqlStatementSource="SELECT &#xA;    COUNT(*)  AS ErrorRowCount&#xA;FROM  &#xA;    err_erp.Receipt (NOLOCK) &#xA;WHERE &#xA;    ExtractJobID = -1"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="ErrorRowCount"
+                    SQLTask:DtsVariableName="User::ErrorRowCount" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{13A3B556-6CA4-4534-8D20-BDEAE2CBDC87}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Log Package Execution"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="3">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+    @DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + "
+    ,@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + "
+    ,@ExtractJobID = " + (DT_WSTR, 10) @[User::ExtractJobID]  + "
+    ,@StartTime = '" + @[User::StartTime]  + "'
+    ,@ManagerGUID = '" + @[User::ManagerGUID] + "'
+    ,@SuccessFlag = 1
+    ,@CompletedFlag = 0
+    ,@MessageSource = 'Log Delivery Execution' 
+    ,@Message = ''
+    ,@RowsDelivered = " + (DT_WSTR, 10) @[User::DeliveredRowCount]  + "
+    ,@RowsErrored = " + (DT_WSTR, 10) @[User::ErrorRowCount]  + "
+    ,@LastExecutionTime = '" + @[User::LastExecutionTime]  + "'
+    ,@NextLastExecutionTime = '" + @[User::StartTime]  + "'
+    ,@DeliveryPackagePathAndName = '" + @[User::DerivedPathAndName] + "'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+                  SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;    @DeliveryControlID = 38&#xA;    ,@DeliveryJobID = -100&#xA;    ,@ExtractJobID = -1&#xA;    ,@StartTime = '1900-01-01'&#xA;    ,@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA'&#xA;    ,@SuccessFlag = 1&#xA;    ,@CompletedFlag = 0&#xA;    ,@MessageSource = 'Log Delivery Execution' &#xA;    ,@Message = ''&#xA;    ,@RowsDelivered = 0&#xA;    ,@RowsErrored = 0&#xA;    ,@LastExecutionTime = '2011-12-20'&#xA;    ,@NextLastExecutionTime = '1900-01-01'&#xA;    ,@DeliveryPackagePathAndName = '\UAT\test\DeliverDimProduct'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution  On Error"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{C9BC0A6D-41CA-4214-AECF-18E15F419634}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Log Package Execution  On Error"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="4">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+    @DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + "
+    ,@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + "
+    ,@ExtractJobID = " + (DT_WSTR, 10) @[User::ExtractJobID]  + "
+    ,@StartTime = '" + @[User::StartTime]  + "'
+    ,@ManagerGUID = '" + @[User::ManagerGUID] + "''
+    ,@SuccessFlag = 0
+    ,@CompletedFlag = 1
+    ,@MessageSource = 'Log Delivery Execution: " + SUBSTRING(@[User::ErrorSource],1, 999)  + "' 
+    ,@Message = '" + SUBSTRING(REPLACE(@[User::ErrorMessage], "'", ""),1, 999)  + "'
+    ,@RowsDelivered = 0
+    ,@RowsErrored = 0
+    ,@LastExecutionTime = '" + @[User::LastExecutionTime]  + "'
+    ,@NextLastExecutionTime = '" + @[User::StartTime]  + "'
+    ,@DeliveryPackagePathAndName = '" + @[User::DerivedPathAndName] + "'"</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+                  SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;    @DeliveryControlID = 38&#xA;    ,@DeliveryJobID = -100&#xA;    ,@ExtractJobID = -1&#xA;    ,@StartTime = '1900-01-01'&#xA;    ,@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA''&#xA;    ,@SuccessFlag = 0&#xA;    ,@CompletedFlag = 1&#xA;    ,@MessageSource = 'Log Delivery Execution: ' &#xA;    ,@Message = ''&#xA;    ,@RowsDelivered = 0&#xA;    ,@RowsErrored = 0&#xA;    ,@LastExecutionTime = '2011-12-20'&#xA;    ,@NextLastExecutionTime = '1900-01-01'&#xA;    ,@DeliveryPackagePathAndName = '\UAT\test\DeliverDimProduct'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Reset RowCounts"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{EFB76A32-5520-49BD-9517-2F2745978527}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Reset RowCounts"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="4">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+                  SQLTask:SqlStatementSource="SELECT &#xA;&#x9;0 AS ErrorRowCount,&#xA;&#x9;0 AS DeliveredRowCount&#xA;"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="DeliveredRowCount"
+                    SQLTask:DtsVariableName="User::DeliveredRowCount" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Run Delivery Stored Proc"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{15f61cc3-2ca2-4b1d-becb-314478b191fb}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Run Delivery Stored Proc"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="1">
+              <DTS:Variables />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"Exec "  +  @[User::DeliveryPackageName]  +  "  " +   (DT_WSTR, 10)  @[User::ExtractJobID]  +", "  +(DT_WSTR, 10) @[User::DeliveryJobID]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{26FA2F2A-2B67-4C28-9FAF-C2A9107FFD9D}"
+                  SQLTask:BypassPrepare="False"
+                  SQLTask:SqlStatementSource="Exec dbo.uspDeliver_mdmDimBusinessEntity  -1, -100" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop\Update DeliveryControl Table LastExtractJobID"
+              DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{55d34a0d-70fe-4df1-9bb3-3dbef72fd843}"
+              DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Update DeliveryControl Table LastExtractJobID"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+              DTS:ThreadHint="3">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:PropertyExpression
+                DTS:Name="SqlStatementSource">"UPDATE DeliveryControl
+   SET 
+      LastExecutionTime = '" + @[User::StartTime]  + "'
+      ,LastExtractJobID = " + (DT_WSTR, 10)@[User::ExtractJobID]  + "
+ WHERE DeliveryControlID = " + (DT_WSTR, 10)@[User::DeliveryControlID]</DTS:PropertyExpression>
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+                  SQLTask:SqlStatementSource="UPDATE DeliveryControl&#xA;   SET &#xA;      LastExecutionTime = '1900-01-01'&#xA;      ,LastExtractJobID = -1&#xA; WHERE DeliveryControlID = 38" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{0813AC79-B250-452C-BC53-D13A6CD2C4B1}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Execute Delivery Package"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Get DeliveredRowCount for this ExtractJobID in delivery table" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{C37956C8-2198-40C2-AEFF-0D7200FBDF91}"
+              DTS:EvalOp="3"
+              DTS:Expression="(ISNULL(@[User::ErrorTable] ) == True || @[User::ErrorTable] == &quot;&quot;)"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Get DeliveredRowCount for this ExtractJobID in delivery table"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 10]"
+              DTS:CreationName=""
+              DTS:DTSID="{68AFA373-1B75-470D-810D-6D41446FD9B1}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 10"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Update DeliveryControl Table LastExtractJobID" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 2]"
+              DTS:CreationName=""
+              DTS:DTSID="{AD656F7A-8DD8-4F67-BCF1-0BD89F6B74BA}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Reset RowCounts"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 2"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution  On Error" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 3]"
+              DTS:CreationName=""
+              DTS:DTSID="{0FD64671-795D-4167-A216-6375CA251C41}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Execute Delivery Package"
+              DTS:ObjectName="Constraint 3"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Reset RowCounts"
+              DTS:Value="1" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 4]"
+              DTS:CreationName=""
+              DTS:Description="ProcessType == &quot;SP&quot;"
+              DTS:DTSID="{50A017F7-B580-4014-8E51-75BC34798AA4}"
+              DTS:EvalOp="3"
+              DTS:Expression="@[User::ProcessType] == &quot;SP&quot;"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Do nothing"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 4"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Run Delivery Stored Proc" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 5]"
+              DTS:CreationName=""
+              DTS:Description="ProcessType == &quot;SSIS&quot;"
+              DTS:DTSID="{13F4BAB9-E8A7-4BA4-92DA-B760368FD2F2}"
+              DTS:EvalOp="3"
+              DTS:Expression="@[User::ProcessType] == &quot;SSIS&quot;"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Do nothing"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 5"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Execute Delivery Package" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 6]"
+              DTS:CreationName=""
+              DTS:DTSID="{A15D6467-14AF-4B58-ACC1-D6CEC03B3D5B}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Run Delivery Stored Proc"
+              DTS:ObjectName="Constraint 6"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Get DeliveredRowCount for this ExtractJobID in delivery table" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 7]"
+              DTS:CreationName=""
+              DTS:DTSID="{40DB3E66-36E9-41FA-9475-CE5B674129F3}"
+              DTS:EvalOp="3"
+              DTS:Expression="(ISNULL(@[User::ErrorTable] ) == False &amp;&amp; @[User::ErrorTable] != &quot;&quot;)"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Get DeliveredRowCount for this ExtractJobID in delivery table"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 7"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\GET ErrorRowCount for this ExtractJobID in the Error Table if the error table exists" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 8]"
+              DTS:CreationName=""
+              DTS:DTSID="{A5F7B11D-F59A-4FA6-98D5-8DB1D7010978}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\GET ErrorRowCount for this ExtractJobID in the Error Table if the error table exists"
+              DTS:ObjectName="Constraint 8"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 9]"
+              DTS:CreationName=""
+              DTS:DTSID="{F9AFF1DA-03A9-4F71-9E7C-5D650C419B20}"
+              DTS:From="Package\Sequence Container\For Each ExtractJobID Loop\Run Delivery Stored Proc"
+              DTS:ObjectName="Constraint 9"
+              DTS:To="Package\Sequence Container\For Each ExtractJobID Loop\Reset RowCounts"
+              DTS:Value="1" />
+          </DTS:PrecedenceConstraints>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{C372E465-7A5A-4024-8526-840B431534AF}"
+              DTS:ObjectName="{C372E465-7A5A-4024-8526-840B431534AF}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::ExtractJobID" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Get Ordered List of ExtractJobIDs to deliver"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{C1BBC94F-9396-43A1-93F2-E2FFE733D1B5}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Ordered List of ExtractJobIDs to deliver"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"SELECT DISTINCT ExtractJobID FROM " +  @[User::ExtractTable]  + " WHERE ExtractJobID &gt; " +  (DT_WSTR, 50)  @[User::LastExtractJobID] + " ORDER BY ExtractJobID"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{26FA2F2A-2B67-4C28-9FAF-C2A9107FFD9D}"
+              SQLTask:SqlStatementSource="SELECT DISTINCT ExtractJobID FROM dbo.vwpkgDeliveryProduct WHERE ExtractJobID &gt; 0 ORDER BY ExtractJobID"
+              SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::ExtractJobIDList" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Get Variable Values"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{33AF9E81-A2EB-43DC-AF44-284115C4D018}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Get Variable Values"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"EXEC [dbo].[spGetDeliveryExecutionVariables] @DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[spGetDeliveryExecutionVariables] @DeliveryControlID = 38"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="StartTime"
+                SQLTask:DtsVariableName="User::StartTime" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="DeliveryPackagePath"
+                SQLTask:DtsVariableName="User::DeliveryPackagePath" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="DeliveryTable"
+                SQLTask:DtsVariableName="User::DeliveryTable" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ExtractTable"
+                SQLTask:DtsVariableName="User::ExtractTable" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ExecutionOrder"
+                SQLTask:DtsVariableName="User::CurrentExecutionOrder" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="LastExecutionTime"
+                SQLTask:DtsVariableName="User::LastExecutionTime" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ConnStr_msdb"
+                SQLTask:DtsVariableName="User::ConnStr_msdb" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ConnStr_Extract"
+                SQLTask:DtsVariableName="User::ConnStr_Extract" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ConnStr_DW"
+                SQLTask:DtsVariableName="User::ConnStr_DW" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ProcessType"
+                SQLTask:DtsVariableName="User::ProcessType" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="ErrorTable"
+                SQLTask:DtsVariableName="User::ErrorTable" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="Environment"
+                SQLTask:DtsVariableName="User::Environment" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="DeliveryPackageName"
+                SQLTask:DtsVariableName="User::DeliveryPackageName" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="DerivedPathAndName"
+                SQLTask:DtsVariableName="User::DerivedPathAndName" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="InsertOnly"
+                SQLTask:DtsVariableName="User::InsertOnly" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="LastExtractJobID"
+                SQLTask:DtsVariableName="User::LastExtractJobID" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Log Information Exection guid and build version"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Log Information Exection guid and build version"
+          DTS:DTSID="{ff1323c6-3ccc-493d-b8e6-a504a3ef3c05}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Information Exection guid and build version"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+@DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + ",
+@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + ",
+@ExtractJobID = -1,
+@StartTime = '" + @[User::StartTime]  + "',
+@ManagerGUID = '" + @[User::ManagerGUID] + "',
+@SuccessFlag = 1,
+@CompletedFlag = 0,
+@MessageSource = 'Log Delivery Execution Started',
+@Message = 'ExectionInstanceGUID:" + @[System::ExecutionInstanceGUID] + ",BuildVersion:" + (DT_STR, 20, 1252)@[System::VersionBuild]  + "',
+@RowsDelivered = NULL,
+@RowsErrored = NULL,
+@LastExecutionTime = '" + @[User::LastExecutionTime]  + "',
+@NextLastExecutionTime = '" + @[User::StartTime]  + "',
+@DeliveryPackagePathAndName = NULL"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;@DeliveryControlID = 38,&#xA;@DeliveryJobID = -100,&#xA;@ExtractJobID = -1,&#xA;@StartTime = '1900-01-01',&#xA;@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA',&#xA;@SuccessFlag = 1,&#xA;@CompletedFlag = 0,&#xA;@MessageSource = 'Log Delivery Execution Started',&#xA;@Message = 'ExectionInstanceGUID:{7484E18E-F6BE-4392-BCEA-4FA4F907CE03},BuildVersion:582',&#xA;@RowsDelivered = NULL,&#xA;@RowsErrored = NULL,&#xA;@LastExecutionTime = '2011-12-20',&#xA;@NextLastExecutionTime = '1900-01-01',&#xA;@DeliveryPackagePathAndName = NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Log Information Extract Count"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Log Information Extract Count"
+          DTS:DTSID="{6cbc6738-2886-4b30-ae84-4d95e8ddd863}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Information Extract Count"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server 2008 R2; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+@DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + ",
+@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + ",
+@ExtractJobID = -1,
+@StartTime = '" + @[User::StartTime]  + "',
+@ManagerGUID = '" + @[User::ManagerGUID] + "',
+@SuccessFlag = 1,
+@CompletedFlag = 0,
+@MessageSource = 'Log Delivery Execution Extract Count', @Message = 'ExtractCount:" + (DT_WSTR, 10) @[User::ExtractCount] + "',
+@RowsDelivered = NULL,
+@RowsErrored = NULL,
+@LastExecutionTime = '" + @[User::LastExecutionTime]  + "',
+@NextLastExecutionTime = '" + @[User::StartTime]  + "',
+@DeliveryPackagePathAndName = NULL"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;@DeliveryControlID = 38,&#xA;@DeliveryJobID = -100,&#xA;@ExtractJobID = -1,&#xA;@StartTime = '1900-01-01',&#xA;@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA',&#xA;@SuccessFlag = 1,&#xA;@CompletedFlag = 0,&#xA;@MessageSource = 'Log Delivery Execution Extract Count', @Message = 'ExtractCount:1',&#xA;@RowsDelivered = NULL,&#xA;@RowsErrored = NULL,&#xA;@LastExecutionTime = '2011-12-20',&#xA;@NextLastExecutionTime = '1900-01-01',&#xA;@DeliveryPackagePathAndName = NULL" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Log Package Execution Completed"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Log Package Execution Completed"
+          DTS:DTSID="{f840ae80-d265-485e-b307-905169726da8}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Package Execution Completed"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+    @DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + "
+    ,@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + "
+    ,@ExtractJobID = " + (DT_WSTR, 10) @[User::ExtractJobID]  + "
+    ,@StartTime = '" + @[User::StartTime]  + "'
+    ,@ManagerGUID = '" + @[User::ManagerGUID] + "'
+    ,@SuccessFlag = 1
+    ,@CompletedFlag = 1
+    ,@MessageSource = 'Log Delivery Execution Completed' 
+    ,@Message = ''
+    ,@RowsDelivered = " + (DT_WSTR, 10) @[User::DeliveredRowCount]  + "
+    ,@RowsErrored = " + (DT_WSTR, 10) @[User::ErrorRowCount]  + "
+    ,@LastExecutionTime = '" + @[User::LastExecutionTime]  + "'
+    ,@NextLastExecutionTime = '" + @[User::StartTime]  + "'
+    ,@DeliveryPackagePathAndName = '" + @[User::DerivedPathAndName] + "'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;    @DeliveryControlID = 38&#xA;    ,@DeliveryJobID = -100&#xA;    ,@ExtractJobID = -1&#xA;    ,@StartTime = '1900-01-01'&#xA;    ,@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA'&#xA;    ,@SuccessFlag = 1&#xA;    ,@CompletedFlag = 1&#xA;    ,@MessageSource = 'Log Delivery Execution Completed' &#xA;    ,@Message = ''&#xA;    ,@RowsDelivered = 0&#xA;    ,@RowsErrored = 0&#xA;    ,@LastExecutionTime = '2011-12-20'&#xA;    ,@NextLastExecutionTime = '1900-01-01'&#xA;    ,@DeliveryPackagePathAndName = '\UAT\test\DeliverDimProduct'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Log Package Execution No Extract Jobs"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c2ae511f-9d12-494c-bc50-b968d1b4c5da}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Log Package Execution No Extract Jobs"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"EXEC [dbo].[spInsertDeliveryExecutionLog]
+    @DeliveryControlID = " + (DT_WSTR, 10) @[User::DeliveryControlID]  + "
+    ,@DeliveryJobID = " + (DT_WSTR, 10) @[User::DeliveryJobID]  + "
+    ,@ExtractJobID = -1
+    ,@StartTime = '" + @[User::StartTime]  + "'
+    ,@ManagerGUID = '" + @[User::ManagerGUID] + "'
+    ,@SuccessFlag = 1
+    ,@CompletedFlag = 1
+    ,@MessageSource = 'Log Delivery Execution' 
+    ,@Message = 'No Extract Jobs'
+    ,@RowsDelivered = " + (DT_WSTR, 10) @[User::DeliveredRowCount]  + "
+    ,@RowsErrored = " + (DT_WSTR, 10) @[User::ErrorRowCount]  + "
+    ,@LastExecutionTime = '" + @[User::LastExecutionTime]  + "'
+    ,@NextLastExecutionTime = '" + @[User::StartTime]  + "'
+    ,@DeliveryPackagePathAndName = '" + @[User::DerivedPathAndName] + "'"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[spInsertDeliveryExecutionLog]&#xA;    @DeliveryControlID = 38&#xA;    ,@DeliveryJobID = -100&#xA;    ,@ExtractJobID = -1&#xA;    ,@StartTime = '1900-01-01'&#xA;    ,@ManagerGUID = 'A93B8573-7731-4F59-BDB8-068205BFC4AA'&#xA;    ,@SuccessFlag = 1&#xA;    ,@CompletedFlag = 1&#xA;    ,@MessageSource = 'Log Delivery Execution' &#xA;    ,@Message = 'No Extract Jobs'&#xA;    ,@RowsDelivered = 0&#xA;    ,@RowsErrored = 0&#xA;    ,@LastExecutionTime = '2011-12-20'&#xA;    ,@NextLastExecutionTime = '1900-01-01'&#xA;    ,@DeliveryPackagePathAndName = '\UAT\test\DeliverDimProduct'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Update DeliveryControl Table"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{F6A4930D-86A9-4B41-A84A-CEC898EB71D6}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Update DeliveryControl Table"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; Microsoft SQL Server v9; © 2004 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"UPDATE DeliveryControl
+   SET LastExecutionTime = '" + @[User::StartTime]  + "'
+      ,LastDeliveryJobID = " + (DT_WSTR, 10)@[User::DeliveryJobID]  + " WHERE DeliveryControlID = " + (DT_WSTR, 10)@[User::DeliveryControlID]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{439A9245-7D87-448B-83FF-6A83EA15EF98}"
+              SQLTask:SqlStatementSource="UPDATE DeliveryControl&#xA;   SET LastExecutionTime = '1900-01-01'&#xA;      ,LastDeliveryJobID = -100 WHERE DeliveryControlID = 38" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{F0880E4C-1E00-401D-A885-892F1A539B8E}"
+          DTS:From="Package\Sequence Container\Derive Package Path if it exists"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Sequence Container\Count Number of Extract JobIDs" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 10]"
+          DTS:CreationName=""
+          DTS:DTSID="{8DF820D2-C4F9-4E31-B9CC-5CE9BAB41965}"
+          DTS:From="Package\Sequence Container\Log Package Execution Completed"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 10"
+          DTS:To="Package\Sequence Container\Update DeliveryControl Table" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 11]"
+          DTS:CreationName=""
+          DTS:Description="ProcessType == &quot;SP&quot;"
+          DTS:DTSID="{5C7F31D4-F18D-44AF-A587-93C631272A13}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::ProcessType] == &quot;SP&quot;"
+          DTS:From="Package\Sequence Container\Log Information Exection guid and build version"
+          DTS:ObjectName="Constraint 11"
+          DTS:To="Package\Sequence Container\Count Number of Extract JobIDs" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:Description="ExtractCount &gt;= 1"
+          DTS:DTSID="{76252BFE-CDA1-4A77-A3AC-0CC0F387B9A1}"
+          DTS:EvalOp="3"
+          DTS:Expression="@ExtractCount &gt;= 1"
+          DTS:From="Package\Sequence Container\Count Number of Extract JobIDs"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Sequence Container\Get Ordered List of ExtractJobIDs to deliver" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          DTS:CreationName=""
+          DTS:DTSID="{6B532AE4-D586-4E6C-8D75-DBC472596F51}"
+          DTS:From="Package\Sequence Container\For Each ExtractJobID Loop"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 3"
+          DTS:To="Package\Sequence Container\Log Package Execution Completed" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
+          DTS:CreationName=""
+          DTS:DTSID="{2D776095-9F1D-4BE3-9E54-FE6911125D6D}"
+          DTS:From="Package\Sequence Container\Get Ordered List of ExtractJobIDs to deliver"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 4"
+          DTS:To="Package\Sequence Container\Log Information Extract Count" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
+          DTS:CreationName=""
+          DTS:Description="ProcessType == &quot;SSIS&quot;"
+          DTS:DTSID="{3DD6D74B-FC48-48A3-8404-BD189F918A2A}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::ProcessType] == &quot;SSIS&quot;"
+          DTS:From="Package\Sequence Container\Log Information Exection guid and build version"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 5"
+          DTS:To="Package\Sequence Container\Derive Package Path if it exists" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:Description="ExtractCount == 0"
+          DTS:DTSID="{EEAC48CB-ACFD-4AAE-B1EB-C77B88A6E487}"
+          DTS:EvalOp="3"
+          DTS:Expression="@ExtractCount == 0"
+          DTS:From="Package\Sequence Container\Count Number of Extract JobIDs"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\Sequence Container\Log Package Execution No Extract Jobs" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{4E9BE358-8C0F-4899-A101-E2DE380303F7}"
+          DTS:From="Package\Sequence Container\Get Variable Values"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Sequence Container\Log Information Exection guid and build version" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[Constraint 9]"
+          DTS:CreationName=""
+          DTS:DTSID="{CCBADFA8-8641-40F3-AA80-8271E88B0AD1}"
+          DTS:From="Package\Sequence Container\Log Information Extract Count"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 9"
+          DTS:To="Package\Sequence Container\For Each ExtractJobID Loop" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CF7D24DF-5841-4844-BDA2-73C13E5138AC}"
+      DTS:From="Package\Sequence Container"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Log Package Execution No Extract Jobs"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{F8A98404-2905-4422-86EB-D7E664186C78}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{226401EC-1120-4534-99D3-68C966144654}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="LastErrorFlag">
+          <DTS:VariableValue
+            DTS:DataType="11">0</DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{63C44C5E-99DC-40E0-B909-1C73A0C0CE5F}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Append Error to Error Message"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Script Task"
+          DTS:DTSID="{A8AE6ECA-F26D-42DF-A5B1-9C64B727555E}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ScriptTask.ScriptTask, Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Append Error to Error Message">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <ScriptProject
+              Name="ST_9048bde605ac4373968bc100bd9fa1c7"
+              VSTAMajorVersion="3"
+              VSTAMinorVersion="0"
+              Language="CSharp"
+              ReadOnlyVariables="System::ErrorDescription,System::SourceName"
+              ReadWriteVariables="User::ErrorMessage,User::ErrorSource">
+              <ProjectItem
+                Name="Properties\Settings.settings"
+                Encoding="UTF8"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.resx"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></ProjectItem>
+              <ProjectItem
+                Name="ScriptMain.cs"
+                Encoding="UTF8"><![CDATA[#region Help:  Introduction to the script task
+/* The Script Task allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services control flow. 
+ * 
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script task. */
+#endregion
+
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Runtime;
+using System.Windows.Forms;
+#endregion
+
+namespace ST_9048bde605ac4373968bc100bd9fa1c7
+{
+	/// <summary>
+	/// ScriptMain is the entry point class of the script.  Do not change the name, attributes,
+	/// or parent of this class.
+	/// </summary>
+	[Microsoft.SqlServer.Dts.Tasks.ScriptTask.SSISScriptTaskEntryPointAttribute]
+	public partial class ScriptMain : Microsoft.SqlServer.Dts.Tasks.ScriptTask.VSTARTScriptObjectModelBase
+	{
+		#region Help:  Using Integration Services variables and parameters in a script
+		/* To use a variable in this script, first ensure that the variable has been added to 
+		 * either the list contained in the ReadOnlyVariables property or the list contained in 
+		 * the ReadWriteVariables property of this script task, according to whether or not your
+		 * code needs to write to the variable.  To add the variable, save this script, close this instance of
+		 * Visual Studio, and update the ReadOnlyVariables and 
+		 * ReadWriteVariables properties in the Script Transformation Editor window.
+		 * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+		 * 
+		 * Example of reading from a variable:
+		 *  DateTime startTime = (DateTime) Dts.Variables["System::StartTime"].Value;
+		 * 
+		 * Example of writing to a variable:
+		 *  Dts.Variables["User::myStringVariable"].Value = "new value";
+		 * 
+		 * Example of reading from a package parameter:
+		 *  int batchId = (int) Dts.Variables["$Package::batchId"].Value;
+		 *  
+		 * Example of reading from a project parameter:
+		 *  int batchId = (int) Dts.Variables["$Project::batchId"].Value;
+		 * 
+		 * Example of reading from a sensitive project parameter:
+		 *  int batchId = (int) Dts.Variables["$Project::batchId"].GetSensitiveValue();
+		 * */
+
+		#endregion
+
+		#region Help:  Firing Integration Services events from a script
+		/* This script task can fire events for logging purposes.
+		 * 
+		 * Example of firing an error event:
+		 *  Dts.Events.FireError(18, "Process Values", "Bad value", "", 0);
+		 * 
+		 * Example of firing an information event:
+		 *  Dts.Events.FireInformation(3, "Process Values", "Processing has started", "", 0, ref fireAgain)
+		 * 
+		 * Example of firing a warning event:
+		 *  Dts.Events.FireWarning(14, "Process Values", "No values received for input", "", 0);
+		 * */
+		#endregion
+
+		#region Help:  Using Integration Services connection managers in a script
+		/* Some types of connection managers can be used in this script task.  See the topic 
+		 * "Working with Connection Managers Programatically" for details.
+		 * 
+		 * Example of using an ADO.Net connection manager:
+		 *  object rawConnection = Dts.Connections["Sales DB"].AcquireConnection(Dts.Transaction);
+		 *  SqlConnection myADONETConnection = (SqlConnection)rawConnection;
+		 *  //Use the connection in some code here, then release the connection
+		 *  Dts.Connections["Sales DB"].ReleaseConnection(rawConnection);
+		 *
+		 * Example of using a File connection manager
+		 *  object rawConnection = Dts.Connections["Prices.zip"].AcquireConnection(Dts.Transaction);
+		 *  string filePath = (string)rawConnection;
+		 *  //Use the connection in some code here, then release the connection
+		 *  Dts.Connections["Prices.zip"].ReleaseConnection(rawConnection);
+		 * */
+		#endregion
+
+
+		/// <summary>
+		/// This method is called when this script task executes in the control flow.
+		/// Before returning from this method, set the value of Dts.TaskResult to indicate success or failure.
+		/// To open Help, press F1.
+		/// </summary>
+		public void Main()
+		{
+			string ErrMessage = "";
+			string ErrSource = "";
+			try
+			{
+			
+				ErrMessage = Dts.Variables["ErrorMessage"].Value.ToString();
+				ErrSource = Dts.Variables["ErrorSource"].Value.ToString();
+
+				if(ErrMessage == "")
+				{
+					ErrMessage = Dts.Variables["System::ErrorDescription"].Value.ToString();
+				}
+				else
+				{
+					ErrMessage = ErrMessage + ";" + Dts.Variables["System::ErrorDescription"].Value.ToString();
+				}
+				if (ErrSource == "")
+				{
+					ErrSource = Dts.Variables["System::SourceName"].Value.ToString();
+				}
+				else
+				{
+					ErrSource = ErrSource + ";" + Dts.Variables["System::SourceName"].Value.ToString();
+				}
+				
+				Dts.Variables["ErrorMessage"].Value = ErrMessage.Replace("'", "''");
+				Dts.Variables["ErrorSource"].Value = ErrSource.Replace("'", "''");
+
+                Dts.TaskResult = (int)ScriptResults.Success;
+
+			}
+			catch(Exception ex)
+			{
+                Dts.TaskResult = (int)ScriptResults.Failure;
+			}
+		}
+
+		#region ScriptResults declaration
+		/// <summary>
+		/// This enum provides a convenient shorthand within the scope of this class for setting the
+		/// result of the script.
+		/// 
+		/// This code was generated automatically.
+		/// </summary>
+		enum ScriptResults
+		{
+			Success = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Success,
+			Failure = Microsoft.SqlServer.Dts.Runtime.DTSExecResult.Failure
+		};
+		#endregion
+
+	}
+}]]></ProjectItem>
+              <ProjectItem
+                Name="ST_9048bde605ac4373968bc100bd9fa1c7.csproj"
+                Encoding="UTF8"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6DCC8CE4-D691-49C5-A570-14C8B3A11DC2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ST_9048bde605ac4373968bc100bd9fa1c7</RootNamespace>
+    <AssemblyName>ST_9048bde605ac4373968bc100bd9fa1c7</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.ManagedDTS, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ScriptTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\VisualStudio\10.0\InstallDir#\devenv.exe" />
+        <Host Name="ScriptTask" />
+        <ProjectClient>
+          <HostIdentifier>SSIS_ST110</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Project"
+                Encoding="UTF16LE"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>ST_9048bde605ac4373968bc100bd9fa1c7</msb:CodeName>
+		<msb:DisplayName>ST_9048bde605ac4373968bc100bd9fa1c7</msb:DisplayName>
+		<msb:ProjectId>{85E6ED6D-EB6F-4A14-A1CC-606E46CF5D6D}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="ST_9048bde605ac4373968bc100bd9fa1c7.csproj"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="ScriptMain.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Settings.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9048bde605ac4373968bc100bd9fa1c7.Properties.Settings.get_Default():ST_9048bde605ac4373968bc100bd9fa1c7.Properties.Sett" +
+    "ings")]
+
+namespace ST_9048bde605ac4373968bc100bd9fa1c7.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\AssemblyInfo.cs"
+                Encoding="UTF8"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("ST_9048bde605ac4373968bc100bd9fa1c7")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ST_9048bde605ac4373968bc100bd9fa1c7")]
+[assembly: AssemblyCopyright("Copyright @  2013")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]]]></ProjectItem>
+              <ProjectItem
+                Name="Properties\Resources.Designer.cs"
+                Encoding="UTF8"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9048bde605ac4373968bc100bd9fa1c7.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9048bde605ac4373968bc100bd9fa1c7.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="ST_9048bde605ac4373968bc100bd9fa1c7.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace ST_9048bde605ac4373968bc100bd9fa1c7.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ST_9048bde605ac4373968bc100bd9fa1c7.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}]]></ProjectItem>
+              <BinaryItem
+                Name="ST_9048bde605ac4373968bc100bd9fa1c7.dll">TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAH6GHFIAAAAAAAAAAOAAAiELAQsAABIAAAAIAAAAAAAAPjAA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAOQvAABXAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAARBAAAAAgAAAAEgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAUAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAGgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAg
+MAAAAAAAAEgAAAACAAUAGCMAAMwMAAABAAAAAAAAAGAiAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKA4AAAoqEzACAC0AAAABAAARfgEAAAQtIHIBAABw0AIA
+AAIoDwAACm8QAAAKcxEAAAoKBoABAAAEfgEAAAQqGn4CAAAEKh4CgAIAAAQqGn4DAAAEKi5zBgAA
+BoADAAAEKh4CKBQAAAoqABswBAByAQAAAgAAEXJzAABwCnJzAABwCwIoFgAACm8XAAAKcnUAAHBv
+GAAACm8ZAAAKbxoAAAoKAigWAAAKbxcAAApyjwAAcG8YAAAKbxkAAApvGgAACgsGcnMAAHAoGwAA
+CiwiAigWAAAKbxcAAApypwAAcG8YAAAKbxkAAApvGgAACgorKwZy2QAAcAIoFgAACm8XAAAKcqcA
+AHBvGAAACm8ZAAAKbxoAAAooHAAACgoHcnMAAHAoGwAACiwiAigWAAAKbxcAAApy3QAAcG8YAAAK
+bxkAAApvGgAACgsrKwdy2QAAcAIoFgAACm8XAAAKct0AAHBvGAAACm8ZAAAKbxoAAAooHAAACgsC
+KBYAAApvFwAACnJ1AABwbxgAAAoGcgMBAHByBwEAcG8dAAAKbx4AAAoCKBYAAApvFwAACnKPAABw
+bxgAAAoHcgMBAHByBwEAcG8dAAAKbx4AAAoCKBYAAAoWbx8AAAreDyYCKBYAAAoXbx8AAAreACoA
+AEEcAAAAAAAADAAAAFYBAABiAQAADwAAAB8AAAEeAiggAAAKKrQAAADOyu++AQAAAJEAAABsU3lz
+dGVtLlJlc291cmNlcy5SZXNvdXJjZVJlYWRlciwgbXNjb3JsaWIsIFZlcnNpb249NC4wLjAuMCwg
+Q3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5I1N5c3RlbS5S
+ZXNvdXJjZXMuUnVudGltZVJlc291cmNlU2V0AgAAAAAAAAAAAAAAUEFEUEFEULQAAABCU0pCAQAB
+AAAAAAAMAAAAdjQuMC4zMDMxOQAAAAAFAGwAAADkAwAAI34AAFAEAADkBQAAI1N0cmluZ3MAAAAA
+NAoAABABAAAjVVMARAsAABAAAAAjR1VJRAAAAFQLAAB4AQAAI0Jsb2IAAAAAAAAAAgAAAVcdogEJ
+AwAAAPolMwAWAAABAAAAHwAAAAUAAAAGAAAACQAAAAEAAAAgAAAAAgAAAA8AAAACAAAAAgAAAAMA
+AAAEAAAAAQAAAAQAAAABAAAAAQAAAAAACgABAAAAAAAGAMEAugAKAN0AyAAOAD0BFAEGAFkBugAG
+AG8BXgEGAKABiwEGAFcCPQIGAIICcAIGAJkCcAIGALYCcAIGANUCcAIGAO4CcAIGAAcDcAIGACID
+cAIGAD0DcAIGAFYDcAIGAI8DbwMGAK8DbwMGAOADzQMGAP0DugAGAAIEugAGACYEcAIKAFIEPAQK
+AGsEPAQGAIAEbwMOAKIEFAEOAMQEFAESAB0F/QQSADUF/QQGAFoFugAGAJUFugAAAAAAAQAAAAAA
+AQABAAAAEAAyADwABQABAAEAAAEQAGsAPAAJAAMABQABABAAdAB/AA0ABAAIAAMBAACjAAAAEQAE
+AAoAEQB/ARMAEQCsARcAEQD2ATkABgYfAkcAVoAnAkoAVoAvAkoAUCAAAAAAgxi8ARsAAQBYIAAA
+AACTCMIBHwABAJEgAAAAAJMI1gEkAAEAmCAAAAAAkwjiASkAAQCgIAAAAACWCAYCPQACALMgAAAA
+AIYYvAEbAAIApyAAAAAAkRibBIkAAgC8IAAAAACGABoCGwACAFgiAAAAAIYYvAEbAAIAAAABADcC
+OQC8AVgAQQC8AVgASQC8AVgAUQC8AVgAWQC8AVgAYQC8AVgAaQC8AVgAcQC8AVgAeQC8AVgAgQC8
+AVgAiQC8AV0AkQC8ARsAmQC8ARsACQC8ARsAoQAUBGIAoQAvBGkAKQC8AW4AuQC8AXoAyQC8ARsA
+EQC8ARsA0QC8ARsAGQDWBI0A2QAnBZIA4QA+BZcA6QBHBZ0ACQBRBaEA8QBhBaUA8QBtBasA8QB0
+BbIA6QB8BbgA2QCGBV0AGQC8ARsACAAUAE4ACAAYAFMAKQCTAIAALgAbADMBLgAjADMBLgBjAFkB
+LgALAMIALgATAAoBLgAzAAoBLgArADMBLgA7ADkBLgBDADMBLgBbAFABQwBrAFMASQCTAIAAYQCb
+AFMAgwCrAFMAdQC9AAIAAQADAAMAAABvAS8AAADuATQAAAASAkIAAgACAAMAAgADAAUAAQAEAAUA
+AgAFAAcABIAAAAEAAAB7E5eaAAAAAAAAfwAAAAQAAAAAAAAAAAAAAAEAsQAAAAAABAAAAAAAAAAA
+AAAAAQC6AAAAAAALAAAAAAAAAAAAAAAKAPUAAAAAAAsAAAAAAAAAAAAAAAoA3gQAAAAAAAAAAAEA
+AACfBQAABQAEAAAAAAAAPE1vZHVsZT4AU1RfOTA0OGJkZTYwNWFjNDM3Mzk2OGJjMTAwYmQ5ZmEx
+YzcuZGxsAFJlc291cmNlcwBTVF85MDQ4YmRlNjA1YWM0MzczOTY4YmMxMDBiZDlmYTFjNy5Qcm9w
+ZXJ0aWVzAFNldHRpbmdzAFNjcmlwdE1haW4AU1RfOTA0OGJkZTYwNWFjNDM3Mzk2OGJjMTAwYmQ5
+ZmExYzcAU2NyaXB0UmVzdWx0cwBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3RlbS5Db25maWd1
+cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuU2NyaXB0
+VGFzawBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5UYXNrcy5TY3JpcHRUYXNrAFZTVEFSVFNjcmlw
+dE9iamVjdE1vZGVsQmFzZQBFbnVtAFN5c3RlbS5SZXNvdXJjZXMAUmVzb3VyY2VNYW5hZ2VyAHJl
+c291cmNlTWFuAFN5c3RlbS5HbG9iYWxpemF0aW9uAEN1bHR1cmVJbmZvAHJlc291cmNlQ3VsdHVy
+ZQAuY3RvcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9DdWx0dXJlAHNldF9DdWx0dXJlAEN1bHR1
+cmUAZGVmYXVsdEluc3RhbmNlAGdldF9EZWZhdWx0AERlZmF1bHQATWFpbgB2YWx1ZV9fAFN1Y2Nl
+c3MARmFpbHVyZQB2YWx1ZQBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdldEZyYW1ld29y
+a0F0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2Vt
+Ymx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFz
+c2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlD
+b3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNzZW1ibHlDdWx0
+dXJlQXR0cmlidXRlAEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVudGltZS5Db21w
+aWxlclNlcnZpY2VzAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVudGltZUNvbXBh
+dGliaWxpdHlBdHRyaWJ1dGUAU3lzdGVtLkRpYWdub3N0aWNzAERlYnVnZ2VyTm9uVXNlckNvZGVB
+dHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBBc3NlbWJs
+eQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVkaXRvckJyb3dzYWJsZUF0dHJp
+YnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQAuY2N0
+b3IAU1NJU1NjcmlwdFRhc2tFbnRyeVBvaW50QXR0cmlidXRlAFNjcmlwdE9iamVjdE1vZGVsAGdl
+dF9EdHMATWljcm9zb2Z0LlNxbFNlcnZlci5NYW5hZ2VkRFRTAE1pY3Jvc29mdC5TcWxTZXJ2ZXIu
+RHRzLlJ1bnRpbWUAVmFyaWFibGVzAGdldF9WYXJpYWJsZXMAVmFyaWFibGUAZ2V0X0l0ZW0AZ2V0
+X1ZhbHVlAFRvU3RyaW5nAFN0cmluZwBvcF9FcXVhbGl0eQBDb25jYXQAUmVwbGFjZQBzZXRfVmFs
+dWUAc2V0X1Rhc2tSZXN1bHQARXhjZXB0aW9uAFNUXzkwNDhiZGU2MDVhYzQzNzM5NjhiYzEwMGJk
+OWZhMWM3LlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwAAAABxUwBUAF8AOQAwADQAOABi
+AGQAZQA2ADAANQBhAGMANAAzADcAMwA5ADYAOABiAGMAMQAwADAAYgBkADkAZgBhADEAYwA3AC4A
+UAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAABABlFAHIAcgBvAHIATQBl
+AHMAcwBhAGcAZQAAF0UAcgByAG8AcgBTAG8AdQByAGMAZQAAMVMAeQBzAHQAZQBtADoAOgBFAHIA
+cgBvAHIARABlAHMAYwByAGkAcAB0AGkAbwBuAAADOwAAJVMAeQBzAHQAZQBtADoAOgBTAG8AdQBy
+AGMAZQBOAGEAbQBlAAADJwABBScAJwABAAAAKmVZPuHnNkuKRKVeU+xkdgAIt3pcVhk04IkIiYRd
+zYCAzJEDBhIVAwYSGQMgAAEEAAASFQQAABIZBQABARIZBAgAEhUECAASGQMGEgwEAAASDAQIABIM
+AgYIAwYRFAQAAAAABAEAAAAEIAEBDgQgAQEIBgABElERVQQgABJZBiACAQ4SWQQHARIVBSABARFh
+CAEAAgAAAAAAAwAAAQQgABJtBCAAEnEFIAESdRwDIAAcAyAADgUAAgIODgYAAw4ODg4FIAIODg4E
+IAEBHAQHAg4ORwEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC4wAQBUDhRGcmFtZXdvcmtEaXNw
+bGF5TmFtZRAuTkVUIEZyYW1ld29yayA0KAEAI1NUXzkwNDhiZGU2MDVhYzQzNzM5NjhiYzEwMGJk
+OWZhMWM3AAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTMAAAgBAAgAAAAAAB4BAAEAVAIWV3Jh
+cE5vbkV4Y2VwdGlvblRocm93cwEMMAAAAAAAAAAAAAAuMAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIDAAAAAAAAAAAAAAAAAAAAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAg
+ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
+AEgAAABYQAAAsAMAAAAAAAAAAAAAsAM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
+AAAAAL0E7/4AAAEAAAABAJeaexMAAAEAl5p7Ez8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
+AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
+bgAAAAAAAACwBBADAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAAOwCAAABADAAMAAw
+ADAAMAA0AGIAMAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAAAABTAFQA
+XwA5ADAANAA4AGIAZABlADYAMAA1AGEAYwA0ADMANwAzADkANgA4AGIAYwAxADAAMABiAGQAOQBm
+AGEAMQBjADcAAABAAA8AAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4ANAA5ADgA
+NwAuADMAOQA1ADcANQAAAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAFQAXwA5
+ADAANAA4AGIAZABlADYAMAA1AGEAYwA0ADMANwAzADkANgA4AGIAYwAxADAAMABiAGQAOQBmAGEA
+MQBjADcALgBkAGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBw
+AHkAcgBpAGcAaAB0ACAAQAAgACAAMgAwADEAMwAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkA
+bABlAG4AYQBtAGUAAABTAFQAXwA5ADAANAA4AGIAZABlADYAMAA1AGEAYwA0ADMANwAzADkANgA4
+AGIAYwAxADAAMABiAGQAOQBmAGEAMQBjADcALgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQA
+TgBhAG0AZQAAAAAAUwBUAF8AOQAwADQAOABiAGQAZQA2ADAANQBhAGMANAAzADcAMwA5ADYAOABi
+AGMAMQAwADAAYgBkADkAZgBhADEAYwA3AAAARAAPAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkA
+bwBuAAAAMQAuADAALgA0ADkAOAA3AC4AMwA5ADUANwA1AAAAAABIAA8AAQBBAHMAcwBlAG0AYgBs
+AHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA0ADkAOAA3AC4AMwA5ADUANwA1AAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAEAwAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</BinaryItem>
+            </ScriptProject>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Log Package Execution No Extract Jobs"
+          TopLeft="1441.55555555556,1669.07142857143" />
+        <NodeLayout
+          Size="233,42"
+          Id="Package\Sequence Container\Count Number of Extract JobIDs"
+          TopLeft="212.300539083558,321.948787061995" />
+        <NodeLayout
+          Size="240,44"
+          Id="Package\Sequence Container\Derive Package Path if it exists"
+          TopLeft="40.4535040431267,221.849730458222" />
+        <NodeLayout
+          Size="136,44"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Do nothing"
+          TopLeft="208.603773584906,13.4150943396227" />
+        <NodeLayout
+          Size="188,44"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Execute Delivery Package"
+          TopLeft="374.459119496856,87.0440251572327" />
+        <NodeLayout
+          Size="229,44"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Get DeliveredRowCount for this ExtractJobID in delivery table"
+          TopLeft="229.96855345912,221.955974842767" />
+        <NodeLayout
+          Size="265,62"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\GET ErrorRowCount for this ExtractJobID in the Error Table if the error table exists"
+          TopLeft="7.58333333333326,329.481656184486" />
+        <NodeLayout
+          Size="183,44"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution"
+          TopLeft="251.111410601976,432.676100628931" />
+        <NodeLayout
+          Size="236,42"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Log Package Execution  On Error"
+          TopLeft="493.974842767295,343.188679245283" />
+        <NodeLayout
+          Size="151,44"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Reset RowCounts"
+          TopLeft="486.515723270441,217.584905660377" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Run Delivery Stored Proc"
+          TopLeft="24.603773584906,103.176100628931" />
+        <NodeLayout
+          Size="301,42"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop\Update DeliveryControl Table LastExtractJobID"
+          TopLeft="230.214285714286,523.06379155435" />
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint]"
+          TopLeft="438.459119496856,131.044025157233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-93.9905660377361,90.9119496855346"
+              Start="0,0"
+              End="-93.9905660377361,83.4119496855346">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.8250935435077" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.8250935435077"
+                    Point2="0,36.8250935435077"
+                    Point3="-4,36.8250935435077" />
+                  <mssgle:LineSegment
+                    End="-89.9905660377361,36.8250935435077" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-89.9905660377361,36.8250935435077"
+                    Point2="-93.9905660377361,36.8250935435077"
+                    Point3="-93.9905660377361,40.8250935435077" />
+                  <mssgle:LineSegment
+                    End="-93.9905660377361,83.4119496855346" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 1]"
+          TopLeft="381.301886792453,265.955974842767">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-9.52380952381083,166.720125786164"
+              Start="0,0"
+              End="-9.52380952381083,159.220125786164">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,79.180588371396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,79.180588371396"
+                    Point2="0,83.180588371396"
+                    Point3="-4,83.180588371396" />
+                  <mssgle:LineSegment
+                    End="-5.52380952381083,83.180588371396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.52380952381083,83.180588371396"
+                    Point2="-9.52380952381083,83.180588371396"
+                    Point3="-9.52380952381083,87.180588371396" />
+                  <mssgle:LineSegment
+                    End="-9.52380952381083,159.220125786164" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-12.7619047619054,88.180588371396,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 10]"
+          TopLeft="342.611410601976,476.676100628931">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="38.1028751123101,46.3876909254191"
+              Start="0,0"
+              End="38.1028751123101,38.8876909254191">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.1938454627095" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.1938454627095"
+                    Point2="0,23.1938454627095"
+                    Point3="4,23.1938454627095" />
+                  <mssgle:LineSegment
+                    End="34.1028751123101,23.1938454627095" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34.1028751123101,23.1938454627095"
+                    Point2="38.1028751123101,23.1938454627095"
+                    Point3="38.1028751123101,27.1938454627095" />
+                  <mssgle:LineSegment
+                    End="38.1028751123101,38.8876909254191" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 2]"
+          TopLeft="562.015723270441,261.584905660377">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="49.9591194968541,81.603773584906"
+              Start="0,0"
+              End="49.9591194968541,74.103773584906">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.801886792453" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.801886792453"
+                    Point2="0,40.801886792453"
+                    Point3="4,40.801886792453" />
+                  <mssgle:LineSegment
+                    End="45.9591194968541,40.801886792453" />
+                  <mssgle:CubicBezierSegment
+                    Point1="45.9591194968541,40.801886792453"
+                    Point2="49.9591194968541,40.801886792453"
+                    Point3="49.9591194968541,44.801886792453" />
+                  <mssgle:LineSegment
+                    End="49.9591194968541,74.103773584906" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 3]"
+          TopLeft="498.459119496856,131.044025157233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="63.556603773585,86.5408805031443"
+              Start="0,0"
+              End="63.556603773585,79.0408805031443">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.0545338746914" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.0545338746914"
+                    Point2="0,35.0545338746914"
+                    Point3="4,35.0545338746914" />
+                  <mssgle:LineSegment
+                    End="59.556603773585,35.0545338746914" />
+                  <mssgle:CubicBezierSegment
+                    Point1="59.556603773585,35.0545338746914"
+                    Point2="63.556603773585,35.0545338746914"
+                    Point3="63.556603773585,39.0545338746914" />
+                  <mssgle:LineSegment
+                    End="63.556603773585,79.0408805031443" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="16.5369542305425,40.0545338746914,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 4]"
+          TopLeft="255.270440251573,57.4150943396227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-131.666666666667,45.7610062893083"
+              Start="0,0"
+              End="-131.666666666667,38.2610062893083">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6236653502999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6236653502999"
+                    Point2="0,18.6236653502999"
+                    Point3="-4,18.6236653502999" />
+                  <mssgle:LineSegment
+                    End="-127.666666666667,18.6236653502999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-127.666666666667,18.6236653502999"
+                    Point2="-131.666666666667,18.6236653502999"
+                    Point3="-131.666666666667,22.6236653502999" />
+                  <mssgle:LineSegment
+                    End="-131.666666666667,38.2610062893083" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-122.486848958333,23.6236653502999,113.30703125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 5]"
+          TopLeft="276.603773584906,57.4150943396227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="191.85534591195,29.62893081761"
+              Start="0,0"
+              End="191.85534591195,22.12893081761">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.814465408805" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.814465408805"
+                    Point2="0,14.814465408805"
+                    Point3="4,14.814465408805" />
+                  <mssgle:LineSegment
+                    End="187.85534591195,14.814465408805" />
+                  <mssgle:CubicBezierSegment
+                    Point1="187.85534591195,14.814465408805"
+                    Point2="191.85534591195,14.814465408805"
+                    Point3="191.85534591195,18.814465408805" />
+                  <mssgle:LineSegment
+                    End="191.85534591195,22.12893081761" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="34.594157330975,19.814465408805,122.66703125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 6]"
+          TopLeft="91.9371069182393,145.176100628931">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="215.698113207547,76.779874213836"
+              Start="0,0"
+              End="215.698113207547,69.279874213836">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.4414605310376" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.4414605310376"
+                    Point2="0,38.4414605310376"
+                    Point3="4,38.4414605310376" />
+                  <mssgle:LineSegment
+                    End="211.698113207547,38.4414605310376" />
+                  <mssgle:CubicBezierSegment
+                    Point1="211.698113207547,38.4414605310376"
+                    Point2="215.698113207547,38.4414605310376"
+                    Point3="215.698113207547,42.4414605310376" />
+                  <mssgle:LineSegment
+                    End="215.698113207547,69.279874213836" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 7]"
+          TopLeft="307.635220125786,265.955974842767">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-167.551886792453,63.5256813417187"
+              Start="0,0"
+              End="-167.551886792453,56.0256813417187">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.6747333089687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.6747333089687"
+                    Point2="0,25.6747333089687"
+                    Point3="-4,25.6747333089687" />
+                  <mssgle:LineSegment
+                    End="-163.551886792453,25.6747333089687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-163.551886792453,25.6747333089687"
+                    Point2="-167.551886792453,25.6747333089687"
+                    Point3="-167.551886792453,29.6747333089687" />
+                  <mssgle:LineSegment
+                    End="-167.551886792453,56.0256813417187" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.7759433962265,30.6747333089687,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 8]"
+          TopLeft="140.083333333333,391.481656184486">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="173.361410601976,41.194444444445"
+              Start="0,0"
+              End="173.361410601976,33.694444444445">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5024377031422" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5024377031422"
+                    Point2="0,24.5024377031422"
+                    Point3="4,24.5024377031422" />
+                  <mssgle:LineSegment
+                    End="169.361410601976,24.5024377031422" />
+                  <mssgle:CubicBezierSegment
+                    Point1="169.361410601976,24.5024377031422"
+                    Point2="173.361410601976,24.5024377031422"
+                    Point3="173.361410601976,28.5024377031422" />
+                  <mssgle:LineSegment
+                    End="173.361410601976,33.694444444445" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 9]"
+          TopLeft="155.270440251573,145.176100628931">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="382.911949685535,72.408805031446"
+              Start="0,0"
+              End="382.911949685535,64.908805031446">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.0931718373181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.0931718373181"
+                    Point2="0,36.0931718373181"
+                    Point3="4,36.0931718373181" />
+                  <mssgle:LineSegment
+                    End="378.911949685535,36.0931718373181" />
+                  <mssgle:CubicBezierSegment
+                    Point1="378.911949685535,36.0931718373181"
+                    Point2="382.911949685535,36.0931718373181"
+                    Point3="382.911949685535,40.0931718373181" />
+                  <mssgle:LineSegment
+                    End="382.911949685535,64.908805031446" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="176.214627186517,41.0931718373181,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="735,622"
+          Size="735,666"
+          Id="Package\Sequence Container\For Each ExtractJobID Loop"
+          TopLeft="373.933962264151,625.094339622641" />
+        <NodeLayout
+          Size="243,44"
+          Id="Package\Sequence Container\Get Ordered List of ExtractJobIDs to deliver"
+          TopLeft="353.898921832884,426.485175202156" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Sequence Container\Get Variable Values"
+          TopLeft="242.901494731683,24.619966511475" />
+        <NodeLayout
+          Size="307,42"
+          Id="Package\Sequence Container\Log Information Exection guid and build version"
+          TopLeft="204.233766233766,127.615739606298" />
+        <NodeLayout
+          Size="316,42"
+          Id="Package\Sequence Container\Log Information Extract Count"
+          TopLeft="489.071428571428,521.492362982921" />
+        <NodeLayout
+          Size="183,44"
+          Id="Package\Sequence Container\Log Package Execution Completed"
+          TopLeft="636.453504043127,1345.06379155435" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\Sequence Container\Log Package Execution No Extract Jobs"
+          TopLeft="78,801.509433962264" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\Sequence Container\Update DeliveryControl Table"
+          TopLeft="653.505288736421,1424.3592460998" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="160.453504043127,265.849730458222">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="130.847035040431,56.099056603773"
+              Start="0,0"
+              End="130.847035040431,48.599056603773">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.4298726053174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.4298726053174"
+                    Point2="0,33.4298726053174"
+                    Point3="4,33.4298726053174" />
+                  <mssgle:LineSegment
+                    End="126.847035040431,33.4298726053174" />
+                  <mssgle:CubicBezierSegment
+                    Point1="126.847035040431,33.4298726053174"
+                    Point2="130.847035040431,33.4298726053174"
+                    Point3="130.847035040431,37.4298726053174" />
+                  <mssgle:LineSegment
+                    End="130.847035040431,48.599056603773" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 10]"
+          TopLeft="727.953504043127,1389.06379155435">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="35.0517846932939,35.29545454545"
+              Start="0,0"
+              End="35.0517846932939,27.79545454545">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.647727272725" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.647727272725"
+                    Point2="0,17.647727272725"
+                    Point3="4,17.647727272725" />
+                  <mssgle:LineSegment
+                    End="31.0517846932939,17.647727272725" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31.0517846932939,17.647727272725"
+                    Point2="35.0517846932939,17.647727272725"
+                    Point3="35.0517846932939,21.647727272725" />
+                  <mssgle:LineSegment
+                    End="35.0517846932939,27.79545454545" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 11]"
+          TopLeft="407.567099567099,169.615739606298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-41.2665604835414,152.333047455697"
+              Start="0,0"
+              End="-41.2665604835414,144.833047455697">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.0112766507979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,72.0112766507979"
+                    Point2="0,76.0112766507979"
+                    Point3="-4,76.0112766507979" />
+                  <mssgle:LineSegment
+                    End="-37.2665604835414,76.0112766507979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-37.2665604835414,76.0112766507979"
+                    Point2="-41.2665604835414,76.0112766507979"
+                    Point3="-41.2665604835414,80.0112766507979" />
+                  <mssgle:LineSegment
+                    End="-41.2665604835414,144.833047455697" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-77.2867958667707,81.0112766507979,113.30703125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 2]"
+          TopLeft="366.300539083558,363.948787061995">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="109.098382749326,62.536388140161"
+              Start="0,0"
+              End="109.098382749326,55.036388140161">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.270458634643" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.270458634643"
+                    Point2="0,25.270458634643"
+                    Point3="4,25.270458634643" />
+                  <mssgle:LineSegment
+                    End="105.098382749326,25.270458634643" />
+                  <mssgle:CubicBezierSegment
+                    Point1="105.098382749326,25.270458634643"
+                    Point2="109.098382749326,25.270458634643"
+                    Point3="109.098382749326,29.270458634643" />
+                  <mssgle:LineSegment
+                    End="109.098382749326,55.036388140161" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="3.99497262466303,30.270458634643,101.1084375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 3]"
+          TopLeft="741.433962264151,1291.09433962264">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-13.480458221024,53.969451931709"
+              Start="0,0"
+              End="-13.480458221024,46.469451931709">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.9847259658545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.9847259658545"
+                    Point2="0,26.9847259658545"
+                    Point3="-4,26.9847259658545" />
+                  <mssgle:LineSegment
+                    End="-9.48045822102404,26.9847259658545" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.48045822102404,26.9847259658545"
+                    Point2="-13.480458221024,26.9847259658545"
+                    Point3="-13.480458221024,30.9847259658545" />
+                  <mssgle:LineSegment
+                    End="-13.480458221024,46.469451931709" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 4]"
+          TopLeft="475.398921832884,470.485175202156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="171.672506738544,51.007187780765"
+              Start="0,0"
+              End="171.672506738544,43.507187780765">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5035938903825" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5035938903825"
+                    Point2="0,25.5035938903825"
+                    Point3="4,25.5035938903825" />
+                  <mssgle:LineSegment
+                    End="167.672506738544,25.5035938903825" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.672506738544,25.5035938903825"
+                    Point2="171.672506738544,25.5035938903825"
+                    Point3="171.672506738544,29.5035938903825" />
+                  <mssgle:LineSegment
+                    End="171.672506738544,43.507187780765" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 5]"
+          TopLeft="307.900432900433,169.615739606298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-147.446928857306,52.2339908519239"
+              Start="0,0"
+              End="-147.446928857306,44.7339908519239">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.0560870446511" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.0560870446511"
+                    Point2="0,21.0560870446511"
+                    Point3="-4,21.0560870446511" />
+                  <mssgle:LineSegment
+                    End="-143.446928857306,21.0560870446511" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-143.446928857306,21.0560870446511"
+                    Point2="-147.446928857306,21.0560870446511"
+                    Point3="-147.446928857306,25.0560870446511" />
+                  <mssgle:LineSegment
+                    End="-147.446928857306,44.7339908519239" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-81.723464428653,26.0560870446511,122.66703125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 6]"
+          TopLeft="291.300539083558,363.948787061995">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-80.300539083558,437.560646900269"
+              Start="0,0"
+              End="-80.300539083558,430.060646900269">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,172.81478826149" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,172.81478826149"
+                    Point2="0,176.81478826149"
+                    Point3="-4,176.81478826149" />
+                  <mssgle:LineSegment
+                    End="-76.300539083558,176.81478826149" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-76.300539083558,176.81478826149"
+                    Point2="-80.300539083558,176.81478826149"
+                    Point3="-80.300539083558,180.81478826149" />
+                  <mssgle:LineSegment
+                    End="-80.300539083558,430.060646900269" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-90.907125010529,181.81478826149,101.5137109375,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 8]"
+          TopLeft="328.901494731683,66.619966511475">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="28.832271502083,60.995773094823"
+              Start="0,0"
+              End="28.832271502083,53.495773094823">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.4978865474115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.4978865474115"
+                    Point2="0,30.4978865474115"
+                    Point3="4,30.4978865474115" />
+                  <mssgle:LineSegment
+                    End="24.832271502083,30.4978865474115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.832271502083,30.4978865474115"
+                    Point2="28.832271502083,30.4978865474115"
+                    Point3="28.832271502083,34.4978865474115" />
+                  <mssgle:LineSegment
+                    End="28.832271502083,53.495773094823" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[Constraint 9]"
+          TopLeft="647.071428571428,563.492362982921">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="94.3625336927225,61.6019766397195"
+              Start="0,0"
+              End="94.3625336927225,54.1019766397195">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.8009883198598" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.8009883198598"
+                    Point2="0,30.8009883198598"
+                    Point3="4,30.8009883198598" />
+                  <mssgle:LineSegment
+                    End="90.3625336927225,30.8009883198598" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.3625336927225,30.8009883198598"
+                    Point2="94.3625336927225,30.8009883198598"
+                    Point3="94.3625336927225,34.8009883198598" />
+                  <mssgle:LineSegment
+                    End="94.3625336927225,54.1019766397195" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43.924528301886795"
+          IsExpanded="True"
+          PanelSize="1142,1537"
+          Size="1142,1581"
+          Id="Package\Sequence Container"
+          TopLeft="997.388888888889,36.75" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="1571.47222222222,1617.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,51.32142857143"
+              Start="0,0"
+              End="0,43.82142857143">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.82142857143" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.24134765625,17.036202566965,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="226,42"
+          Id="Package.EventHandlers[OnError]\Append Error to Error Message"
+          TopLeft="16,24" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PrecedenceConstraint
+    design-time-name="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 4]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Sequence Container\For Each ExtractJobID Loop.PrecedenceConstraints[Constraint 5]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Sequence Container.PrecedenceConstraints[Constraint 11]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Sequence Container.PrecedenceConstraints[Constraint 2]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Sequence Container.PrecedenceConstraints[Constraint 5]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+  <PrecedenceConstraint
+    design-time-name="Package\Sequence Container.PrecedenceConstraints[Constraint 6]">
+    <ShowAnnotation>ConstraintDescription</ShowAnnotation>
+  </PrecedenceConstraint>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

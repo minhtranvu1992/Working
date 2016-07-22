@@ -1,0 +1,35 @@
+﻿CREATE TABLE [dbo].[StagingExecutionLog] (
+    [StagingExecutionLogID]     INT              IDENTITY (1, 1) NOT NULL,
+    [StagingControlID]          INT              NULL,
+    [StagingJobID]              INT              NULL,
+    [StartTime]                 DATETIME         NULL,
+    [EndTime]                   DATETIME         NULL,
+    [ManagerGUID]               UNIQUEIDENTIFIER NULL,
+    [SuccessFlag]               INT              NULL,
+    [CompletedFlag]             INT              NULL,
+    [MessageSource]             VARCHAR (1000)   NULL,
+    [Message]                   VARCHAR (MAX)    NULL,
+    [RowsStaged]                INT              NULL,
+    [RowsInserted]              INT              NULL,
+    [RowsDeleted]               INT              NULL,
+    [RowsUpdated]               INT              NULL,
+    [StagingPackagePathAndName] VARCHAR (250)    NULL,
+    [StagingPackageName]        VARCHAR (50)     NULL,
+    [StagingPackagePath]        VARCHAR (200)    NULL,
+    [ActualFileName]            VARCHAR (200)    NULL,
+    [SourceControlID]           INT              NULL,
+    [SourceControlValue]        VARCHAR (255)    NULL,
+    [ProcessingControlID]       INT              NULL,
+    [ProcessingControlValue]    VARCHAR (255)    NULL,
+    [StagingDestControlID]      INT              NULL,
+    [StagingDestControlValue]   VARCHAR (255)    NULL,
+    [SuiteID]                   INT              NULL,
+    [SuiteName]                 VARCHAR (50)     NULL,
+    [RunAs32Bit]                BIT              NULL,
+    [ExtractStartTime]          DATETIME         NULL,
+    [ExtractEndTime]            DATETIME         NULL,
+    CONSTRAINT [PK_FileExecutionLog] PRIMARY KEY CLUSTERED ([StagingExecutionLogID] ASC)
+);
+
+
+

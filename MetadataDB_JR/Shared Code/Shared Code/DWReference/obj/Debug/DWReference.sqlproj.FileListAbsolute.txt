@@ -1,0 +1,5 @@
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference\bin\Output\DWReference.dacpac
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference\bin\Output\DWReference.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference\bin\Output\DWReference.pdb
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference\obj\Debug\DWReference.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference\obj\Debug\DWReference.pdb

@@ -1,0 +1,20 @@
+﻿<Playlist Version="1.0">
+  <Add Test="DWReference.Test.StagingControlTest.SimpleLoadFile2" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestGetNextRunDateTimeStagingControlID" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestStartSSISPackage" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestCreateShemaIniFile" />
+  <Add Test="DWReference.Test.StagingControlTest.SimpleLoadFile3" />
+  <Add Test="DWReference.Test.StagingControlTest.CheckFileHeadersAndColumns1" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestStagingMapping" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestGetFiles2" />
+  <Add Test="DWReference.Test.StagingControlTest.SimpleLoadSql1" />
+  <Add Test="DWReference.Test.StagingControlTest.TestspGetStagingManagerFolderLocation" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestStartManagerPackageStaging1" />
+  <Add Test="DWReference.Test.ScriptHelperTest.TestGetFiles1" />
+
+  <Add Test="DWReference.Test.ScriptHelperTest.TestMainStagingExecutionFileBulkUpload1" />
+  <Add Test="DWReference.Test.StagingControlTest.MovingZipFileIntoProcessed" />
+
+  <Add Test="DWReference.Test.StagingControlTest.TruncateStagingTable1" />
+ 
+</Playlist>

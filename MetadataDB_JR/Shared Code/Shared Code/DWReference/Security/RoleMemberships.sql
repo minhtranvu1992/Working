@@ -1,0 +1,4 @@
+﻿ALTER ROLE [db_datareader] ADD MEMBER [BRIGHTSTAR\APACDB_DBA_S];
+
+
+

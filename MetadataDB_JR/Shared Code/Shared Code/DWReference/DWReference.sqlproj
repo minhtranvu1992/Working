@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DWReference</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{007da2a2-634f-4ba1-a0f8-db04572eebb9}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DWReference</RootNamespace>
+    <AssemblyName>DWReference</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <Recovery>SIMPLE</Recovery>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MetadataDB_Only|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables\" />
+    <Folder Include="Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="Functions\" />
+    <Folder Include="Stored Procedures\" />
+    <Folder Include="Synonyms\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Pre-Deployment Scripts" />
+    <Folder Include="Scripts\Post-Deployment Scripts" />
+    <Folder Include="Database Triggers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\dbo.ExtractExecutionLog.sql" />
+    <Build Include="Tables\dbo.SSISConfiguration.sql" />
+    <Build Include="Tables\dbo.DeliveryControl.sql" />
+    <Build Include="Tables\dbo.Suite.sql" />
+    <Build Include="Tables\dbo.SummaryExecutionLog.sql" />
+    <Build Include="Tables\dbo.ETLParameters.sql" />
+    <Build Include="Tables\dbo.SourceControl.sql" />
+    <Build Include="Tables\dbo.ScheduleOutageWindow.sql" />
+    <Build Include="Tables\dbo.DeliveryExecutionLog.sql" />
+    <Build Include="Tables\dbo.Schedule.sql" />
+    <Build Include="Tables\dbo.SourceType.sql" />
+    <Build Include="Tables\dbo.LookupTable.sql" />
+    <Build Include="Tables\dbo.ExtractControl.sql" />
+    <Build Include="Tables\dbo.SummaryControl.sql" />
+    <Build Include="Tables\dbo.ScheduleType.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Functions\dbo.udfPackagePathName.sql" />
+    <Build Include="Stored Procedures\dbo.spGetDeliveryCompl.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailExtractFailure.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailProcessHanging.sql" />
+    <Build Include="Stored Procedures\dbo.spGetDeliveryManagerPackages.sql" />
+    <Build Include="Stored Procedures\dbo.spWritePackageProgressLog.sql" />
+    <Build Include="Stored Procedures\dbo.spInsertDeliveryExecutionLog.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractCompl.sql" />
+    <Build Include="Stored Procedures\dbo.GetPreProcessJobID.sql" />
+    <Build Include="Stored Procedures\dbo.spGetJobID.sql" />
+    <Build Include="Stored Procedures\dbo.spGetDeliveryExecutionVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spUpdateExtractSuiteStatus.sql" />
+    <Build Include="Stored Procedures\dbo.spGetSourceControl.sql" />
+    <Build Include="Stored Procedures\dbo.spCheckOutageWindow.sql" />
+    <Build Include="Stored Procedures\dbo.spGetLogilityExtractUploadVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractSuites.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractPackages.sql" />
+    <Build Include="Stored Procedures\dbo.spGetDeliveryManagerVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spUpdateExtractExecutionStatus.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractManagerVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spInsertExtractExecutionLog.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionSqlVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionDestinationType.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionFileVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionOrder.sql" />
+    <Build Include="Stored Procedures\dbo.spr_scdw_healthCheck.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionSourceDestType.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionSqlFileVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionStandardVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionDestFileVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionSourceSqlVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionSourceFileVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetExtractExecutionDestSqlVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spCheckBuildCube.sql" />
+    <Build Include="Stored Procedures\dbo.spViewLatestLog.sql" />
+    <Build Include="Stored Procedures\dbo.spGetSSISPackagePath.sql" />
+    <Build Include="Stored Procedures\dbo.spRefreshSSISConfiguration.sql" />
+    <Build Include="Synonyms\dbo.SSISConfigurationSource.sql" />
+    <Build Include="Tables\dbo.QlikviewPermissions.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Stored Procedures\dbo.spUpdateDeliveryControlCurrentExtractJobID.sql" />
+    <Build Include="Stored Procedures\dbo.spUpdateSummaryControlCurrentDeliveryJobID.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailFailedLogToday.sql" />
+    <Build Include="Stored Procedures\dbo.spInsertSummaryExecutionLog.sql" />
+    <Build Include="Stored Procedures\dbo.spGetSummaryManagerVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetSummaryManagerPackages.sql" />
+    <Build Include="Stored Procedures\dbo.spGetSummaryExecutionStandardVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetSummaryCompl.sql" />
+    <Build Include="Security\BRIGHTSTAR_APACDB_DBA_S.sql" />
+    <Build Include="Security\BRIGHTSTAR_AMarret.sql" />
+    <Build Include="Stored Procedures\dbo_1.spSendEmailSummaryFailure.sql" />
+    <Build Include="Stored Procedures\dbo_1.spSendEmailDeliveryFailure.sql" />
+    <Build Include="Stored Procedures\dbo.spGetNextTime.sql" />
+    <Build Include="Stored Procedures\dbo.sp_SendEmailSummaryFailedToday.sql" />
+    <Build Include="Stored Procedures\dbo.sp_SendEmailPreprocessLog.sql" />
+    <Build Include="Stored Procedures\dbo.sp_SendEmailFailedLogToday.sql" />
+    <Build Include="Tables\dbo.StagingExecutionLog.sql" />
+    <Build Include="Tables\dbo.StagingControl.sql" />
+    <Build Include="Tables\Audit.Audit_DDL_Events.sql" />
+    <Build Include="Stored Procedures\dbo.udpLongPrintN.sql" />
+    <Build Include="Stored Procedures\dbo.spUpdateStagingExecutionStatus.sql" />
+    <Build Include="Stored Procedures\dbo.spInsertStagingExecutionLog.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingSuites.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingPackagesFile.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingManagerVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingManagerFolderLocation.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingExecutionStandardVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingExecutionBulkSqlVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingExecutionBulkFileVariables.sql" />
+    <Build Include="Stored Procedures\dbo.spGetDtexecLocation.sql" />
+    <Build Include="Stored Procedures\dbo.LongPrintN.sql" />
+    <Build Include="Stored Procedures\dbo.CheckerIDAndName.sql" />
+    <Build Include="Database Triggers\Audit_DDL.sql" />
+    <Build Include="Security\Audit.sql" />
+    <Build Include="Tables\Audit.AuditMonitorTableColumns.sql" />
+    <Build Include="Tables\Audit.AuditData.sql" />
+    <Build Include="Stored Procedures\Audit.AuditTriggerGen.sql" />
+    <Build Include="Tables\Audit.AuditMonitorTableColumns.AuditMonitorTableColumns_ChangeTracking.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailChecker.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailStagingFailure.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailDeliveryMaxJobIDFailure.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailExtractMaxJobIDFailure.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailSummaryMaxJobIDFailure.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailMaxJobIDChecker.sql" />
+    <Build Include="Stored Procedures\dbo.spGetStagingPackagesSQL.sql" />
+    <Build Include="Stored Procedures\dbo.spSendEmailStagingMaxExpectedDurationBetweenFiles.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Pre-Deployment Scripts\Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment Scripts\Script.PostDeployment1.sql" />
+  </ItemGroup>
+</Project>

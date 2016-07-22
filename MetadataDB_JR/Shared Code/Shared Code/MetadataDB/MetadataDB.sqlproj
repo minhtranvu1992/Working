@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MetadataDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{8844e03a-f47c-4052-9c52-baaeb279b2f2}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MetadataDB</RootNamespace>
+    <AssemblyName>MetadataDB</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>CHECKSUM</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>110</CompatibilityMode>
+    <AnsiNullDefault>False</AnsiNullDefault>
+    <AnsiNulls>False</AnsiNulls>
+    <AnsiPadding>False</AnsiPadding>
+    <AnsiWarnings>False</AnsiWarnings>
+    <ArithAbort>False</ArithAbort>
+    <ConcatNullYieldsNull>False</ConcatNullYieldsNull>
+    <QuotedIdentifier>False</QuotedIdentifier>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>GLOBAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>SIMPLE</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MetadataDB_Only|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="User Defined Types\" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Pre-Deployment Scripts" />
+    <Folder Include="Scripts\Post-Deployment Scripts" />
+    <Folder Include="Scripts\Object Creation Scripts" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Functions\" />
+    <Folder Include="Views\" />
+    <Folder Include="Database Triggers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\dbo.ConnectionClass.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.Connection.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.ConnectionClassCategory.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.DataMart.sql" />
+    <Build Include="Tables\dbo.DataMartDWElement.sql" />
+    <Build Include="Tables\dbo.DomainDataType.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.DWObjectBuildType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.DWObjectType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.ExportObject.sql" />
+    <Build Include="Tables\dbo.ExportElement.sql" />
+    <Build Include="Tables\dbo.ExportSystem.sql" />
+    <Build Include="Tables\dbo.Mapping.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.Frequency.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.SourceChangeType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.TargetType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.MappingElement.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.MappingSet.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.MappingInstance.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.MappingInstanceMapping.sql" />
+    <Build Include="Tables\dbo.MappingSetMapping.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.DWElement.sql" />
+    <Build Include="Tables\dbo.DWObject.sql" />
+    <Build Include="Tables\dbo.DWLayer.sql" />
+    <Build Include="User Defined Types\dbo.Code.sql" />
+    <Build Include="User Defined Types\dbo.Count.sql" />
+    <Build Include="User Defined Types\dbo.Description.sql" />
+    <Build Include="User Defined Types\dbo.ElementOrder.sql" />
+    <Build Include="User Defined Types\dbo.ForeignID.sql" />
+    <Build Include="User Defined Types\dbo.ElementName.sql" />
+    <Build Include="User Defined Types\dbo.PrimaryID.sql" />
+    <Build Include="User Defined Types\dbo.Flag.sql" />
+    <Build Include="User Defined Types\dbo.Logic.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.ConnectionClass.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.ConnectionClassCategory.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.DomainDataType.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.DWObjectBuildType.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.DWObjectType.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.Frequency.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.SourceChangeType.Table.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.TargetType.Table.sql" />
+    <Build Include="Stored Procedures\dbo.udpLongPrint.sql" />
+    <Build Include="Stored Procedures\dbo.udpLongPrintN.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.Parameter.Table.sql" />
+    <Build Include="Tables\dbo.Parameter.sql" />
+    <Build Include="Functions\dbo.fnGetParameterValue.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWLogicalLayer.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWExtractObjects.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWDeliveryProcs.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWDatamartLayer.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWBaseObjects.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptAllObjects.sql" />
+    <Build Include="Tables\dbo.DeltaType.sql" />
+    <Build Include="Tables\dbo.DeleteType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptLogicalModel.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceSummaryRecords.sql">
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceSuiteRecords.sql">
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceLayer.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceExtractRecords.sql">
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceDeliveryRecords.sql">
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptDWLogicalLayer_Views.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWLogicalLayer_Snapshots.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWLogicalLayer_Deltas.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWDataModel.sql" />
+    <Build Include="Stored Procedures\dbo.uspAuditReport.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.DeleteType.Table.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.DeltaType.Table.sql" />
+    <Build Include="Tables\dbo.ETLImplementationType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\Audit.Audit_DDL_Events.sql" />
+    <Build Include="Stored Procedures\dbo.uspShowAllDMLChanges.sql" />
+    <Build Include="Database Triggers\Audit_DDL.sql" />
+    <Build Include="Security\Audit.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceSourceRecords.sql" />
+    <Build Include="Tables\dbo.StagingOwner.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.StagingObject.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.StagingElement.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.SourceDataType.sql" />
+    <Build Include="Tables\dbo.DefaultType.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.BuildScripts.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Views\dbo.vMappingData_MappingSet.sql" />
+    <Build Include="Views\dbo.vMappingData_MappingInstance.sql" />
+    <Build Include="Views\dbo.vMappingData_MappingElement.sql" />
+    <Build Include="Views\dbo.vMappingData_Mapping.sql" />
+    <Build Include="Views\dbo.vFeedData_Summary.sql" />
+    <Build Include="Views\dbo.vFeedData_Detail.sql" />
+    <Build Include="Views\dbo.vAudit_MappingElement_Orphaned.sql" />
+    <Build Include="Views\dbo.vAudit_Mapping_NotMemberOfMappingSet.sql" />
+    <Build Include="Views\dbo.vAudit_Mapping_MappingSetContainsMappingsTargetingMultipleLayerTypes.sql" />
+    <Build Include="Views\dbo.vAudit_DWObject_NoMapping.sql" />
+    <Build Include="Views\dbo.vAudit_DWObject_NoElements.sql" />
+    <Build Include="Views\dbo.vAudit_DWElement_SnapshotProcessSeperatorNotRequired.sql" />
+    <Build Include="Views\dbo.vAudit_DWElement_NotUsedinDatamart.sql" />
+    <Build Include="Views\dbo.vAudit_DWElement_NameMismatchWithLookupEntity.sql" />
+    <Build Include="Views\dbo.vAudit_DWElement_MultipleSnapshotProcessSeperator.sql" />
+    <Build Include="Views\dbo.vAudit_DWElement_MissingMappingElement.sql" />
+    <Build Include="Views\dbo.vAudit_DWElement_LookupObjectHasIncorrectLayer.sql" />
+    <Build Include="Views\dbo.vAudit_Datamart_OrphanedElements.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingXMLMergeProcs.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingObjects.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.DefaultType.Table.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.ETLImplementationType.Table.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.SourceDataType.Table.sql" />
+    <Build Include="Tables\dbo.StagingObjectType.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.SourceDataTypeOverride.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.DateFormatType.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptSourceObject_Staging.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptSourceObject_Extract.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingXMLTableType.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingXMLSchema.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingTableBatch_STG.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingTableBatch_ODS.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingTable_Message.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWStagingBatchMergeProcs.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDWReferenceStagingRecords.sql" />
+    <Build Include="Stored Procedures\dbo.uspScriptDatabaseDeploymentScript.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\BRIGHTSTAR_RMurugappan_1.sql" />
+    <Build Include="Security\BRIGHTSTAR_OSzymczak_1.sql" />
+    <Build Include="Security\BRIGHTSTAR_APACDB_TMA_PLM_1.sql" />
+    <Build Include="Security\BRIGHTSTAR_APACDB_DBA_S_1.sql" />
+    <Build Include="Security\BRIGHTSTAR_AMarret_1.sql" />
+    <Build Include="ExtendedProperties.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.DateFormatType.Table.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.SourceDataTypeOverride.Table.sql" />
+    <Build Include="Scripts\Post-Deployment Scripts\dbo.StagingObjectType.Table.sql" />
+    <Build Include="Views\dbo.vAudit_Mapping_Issues.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptSourceExtractLogic.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\dbo.KeyWordList.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Views\dbo.vAudit_Object_BusinessKeyMissing.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Views\dbo.vAudit_Element_BusinessKeyOrder.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Views\dbo.vAudit_All_Identifiers.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Functions\dbo.fnValidateIdentifier.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptLogicalModel_OLD.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\dbo.uspScriptLogicalModel_NEW.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment Scripts\Script.PostDeployment.sql" />
+    <None Include="Scripts\Post-Deployment Scripts\dbo.KeyWordList.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Scripts\Pre-Deployment Scripts\Script.PreDeployment.sql" />
+  </ItemGroup>
+</Project>

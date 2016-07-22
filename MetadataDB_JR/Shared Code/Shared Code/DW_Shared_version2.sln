@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Packages_Core", "Packages_Core\Packages_Core.dtproj", "{E29308DE-4C5F-439E-821E-974B70AA513E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWReference.Test", "DWReference.Test\DWReference.Test.csproj", "{EA1110AF-C292-4A2C-8B40-A216BD210D29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWReferenceHelper", "DWReferenceHelper\DWReferenceHelper.csproj", "{8A4AAB81-C64C-458D-B3E0-95DE16B17478}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWReferenceSsisSync.WPF", "DWReferenceSsisSync.WPF\DWReferenceSsisSync.WPF.csproj", "{0FDEC5AE-631B-4941-91F2-BACACF130AEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
+		MetadataDB_Only|Any CPU = MetadataDB_Only|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.Debug|Any CPU.ActiveCfg = Development
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.Development|Any CPU.ActiveCfg = Development
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.Development|Any CPU.Build.0 = Development
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.MetadataDB_Only|Any CPU.ActiveCfg = Development
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.MetadataDB_Only|Any CPU.Build.0 = Development
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.Release|Any CPU.ActiveCfg = Development
+		{E29308DE-4C5F-439E-821E-974B70AA513E}.Release|Any CPU.Build.0 = Development
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.MetadataDB_Only|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.MetadataDB_Only|Any CPU.Build.0 = Release|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1110AF-C292-4A2C-8B40-A216BD210D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.MetadataDB_Only|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.MetadataDB_Only|Any CPU.Build.0 = Release|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4AAB81-C64C-458D-B3E0-95DE16B17478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.MetadataDB_Only|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.MetadataDB_Only|Any CPU.Build.0 = Release|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDEC5AE-631B-4941-91F2-BACACF130AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
