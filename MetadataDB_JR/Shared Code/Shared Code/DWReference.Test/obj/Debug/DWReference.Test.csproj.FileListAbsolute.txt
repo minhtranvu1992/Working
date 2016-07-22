@@ -1,0 +1,45 @@
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\App.config
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\OrderedTest1.orderedtest
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll.config
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.pdb
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\Oracle.DataAccess.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\Microsoft.SqlServer.DTSRuntimeWrap.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.pdb
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.csprojResolveAssemblyReference.cache
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.pdb
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\App.config
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\OrderedTest1.orderedtest
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll.config
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.pdb
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\Oracle.DataAccess.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\Microsoft.SqlServer.DTSRuntimeWrap.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.pdb
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.csprojResolveAssemblyReference.cache
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.pdb
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\App.config
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\OrderedTest1.orderedtest
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll.config
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.pdb
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.dll
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\Oracle.DataAccess.dll
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.pdb
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.csprojResolveAssemblyReference.cache
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.dll
+D:\Work\EIM\Unit test\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.pdb
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\App.config
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\OrderedTest1.orderedtest
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll.config
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.dll
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\DWReference.Test.pdb
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.dll
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\bin\Debug\DWReferenceHelper.pdb
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.csprojResolveAssemblyReference.cache
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.dll
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReference.Test\obj\Debug\DWReference.Test.pdb

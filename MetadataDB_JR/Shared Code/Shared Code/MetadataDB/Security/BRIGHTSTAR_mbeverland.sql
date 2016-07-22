@@ -1,0 +1,2 @@
+﻿CREATE USER [BRIGHTSTAR\mbeverland] FOR LOGIN [BRIGHTSTAR\mbeverland];
+

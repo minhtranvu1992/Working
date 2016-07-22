@@ -1,0 +1,49 @@
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.exe.config
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.exe
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.pdb
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceHelper.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\Microsoft.SqlServer.DTSRuntimeWrap.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceHelper.pdb
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.WPF.csprojResolveAssemblyReference.cache
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\MainWindow.baml
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\MainWindow.g.cs
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\App.g.cs
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync_MarkupCompile.cache
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.g.resources
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.Properties.Resources.resources
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.WPF.csproj.GenerateResource.Cache
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.exe
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.pdb
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\Oracle.DataAccess.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.exe.config
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.exe
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.pdb
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceHelper.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\Oracle.DataAccess.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\Microsoft.SqlServer.DTSRuntimeWrap.dll
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceHelper.pdb
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.WPF.csprojResolveAssemblyReference.cache
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\MainWindow.baml
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\MainWindow.g.cs
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\App.g.cs
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync_MarkupCompile.cache
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.g.resources
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.Properties.Resources.resources
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.WPF.csproj.GenerateResource.Cache
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.exe
+C:\Users\TNghi\Documents\Nghi\Local Project\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.pdb
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.exe.config
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.exe
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceSsisSync.pdb
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceHelper.dll
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\bin\Debug\DWReferenceHelper.pdb
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.WPF.csprojResolveAssemblyReference.cache
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\MainWindow.baml
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\MainWindow.g.cs
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\App.g.cs
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync_MarkupCompile.cache
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.g.resources
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.Properties.Resources.resources
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.WPF.csproj.GenerateResource.Cache
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.exe
+D:\Working\MetadataDB_JR\Shared Code\Shared Code\DWReferenceSsisSync.WPF\obj\Debug\DWReferenceSsisSync.pdb

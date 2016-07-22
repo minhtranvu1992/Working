@@ -1,0 +1,2 @@
+﻿CREATE USER [BRIGHTSTAR\RMurugappan] FOR LOGIN [BRIGHTSTAR\RMurugappan];
+

@@ -1,0 +1,7 @@
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\bin\Output\MetadataDB.dacpac
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\obj\Debug\Model.xml
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\obj\Debug\refactor.xml
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\obj\Debug\postdeploy.sql
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\obj\Debug\predeploy.sql
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\obj\Debug\MetadataDB.dll
+C:\Users\TNghi\Documents\Nghi\Brightstar.DW\Shared Code\MetadataDB\obj\Debug\MetadataDB.pdb
